@@ -1,3 +1,4 @@
 import { loadProject } from './storage.js';
 
-loadProject();
+// const todoList = loadProject();
+// console.log(todoList);
