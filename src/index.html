@@ -8,6 +8,30 @@
   <link rel="stylesheet" href="../dist/style.css">
 </head>
 <body> 
-  <div class="text-lg text-gray-600">Hello!</div> 
+  <div class="relative min-h-screen md:flex">
+    <!-- mobile menu -->
+    <div class="bg-gray-800 text-gray-100 flex justify-between md:hidden">
+      <span class="font-bold p-4 block">To-do</span>
+      <button class="js-btn-mobile-menu p-4 focus:bg-gray-700">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><title>menu</title><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+      </button>
+    </div>
+    <!-- Sidebar -->
+    <div class="js-sidebar bg-green-800 text-green-100 w-52 flex flex-col gap-10 pt-10 items-center
+    absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+      <span class="text-2xl text-center font-extrabold">PROJECTS</span>
+      <nav>
+        <ul>
+          <li>Project 1</li>
+          <li>Project 2</li>
+        </ul>
+      </nav>
+    </div>
+    <!-- content -->
+    <div class="flex-1 p-10 text-2xl">
+      To-do list
+    </div>
+
+  </div>
 </body>
 </html>
