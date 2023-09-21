@@ -591,6 +591,10 @@ video {
   margin-top: 1rem;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
 .block {
   display: block;
 }
@@ -855,6 +859,10 @@ video {
 
 .place-items-center {
   place-items: center;
+}
+
+.content-between {
+  align-content: space-between;
 }
 
 .items-start {
@@ -1122,6 +1130,10 @@ video {
 
 .p-5 {
   padding: 1.25rem;
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .pt-10 {
@@ -1495,6 +1507,16 @@ video {
 }
 
 .group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+.group:focus .group-focus\:scale-100 {
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.group:focus .group-focus\:opacity-100 {
   opacity: 1;
 }
 
