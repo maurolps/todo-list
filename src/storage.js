@@ -91,10 +91,12 @@ const defaultTodolist =
 export const loadProject = () => {
   const todoList = localStorage.getItem("todolist");
   if (todoList !== null) {
-    console.log(JSON.parse(todoList));
+    console.log ("Data found! Loading your To-do list...")
+    return JSON.parse(todoList);
   } else {
-    console.log("Creating default To-do list...");
+    console.log("Data not found. Creating default To-do list...");
     localStorage.setItem("todolist", defaultTodolist);
+    return JSON.parse(defaultTodolist);
   }
 }
 
