@@ -17,24 +17,39 @@
       </button>
     </div>
     <!-- Sidebar -->
-    <div class="js-sidebar bg-green-800 text-green-100 min-w-[1rem] w-44 flex flex-col gap-10 pt-10 items-center
+    <div class="js-sidebar shadow-sm bg-white text-neutral-700 w-56 flex flex-col gap-10 items-center
     absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
-      <span class="text-2xl text-center font-extrabold">PROJECTS</span>
+      <div class="flex justify-center w-full py-11 border-b-2 border-gray-100">
+        <span class="text-2xl font-extrabold">PROJECTS</span>
+      </div>
       <nav>
-        <ul>
-          <li><button>Project 1</button></li>
-          <li><button>Project 2</button></li>
+        <ul class="text-lg">
+          <li><button>Workout</button></li>
+          <li><button>Web devel</button></li>
+          <li><button>Daily tasks</button></li>
         </ul>
       </nav>
     </div>
 
-    <div class="bg-red-200 flex-1">
-      <div class="bg-red-600 m-10"> new list...</div>
+    <div class="bg-white flex-1">
+      <!-- New to-do list input  -->
+      <div class="bg-gradient-to-r from-white to-neutral-100 flex justify-center shadow">
+        <div class="my-10 w-fit relative flex justify-center">
+          <input class="text-sm p-2  bg-transparent w-72 border-2 focus:outline-slate-400 " type="text" id="new-task" placeholder="New To-do list...">
+          <label for="new-task">
+            <button class="absolute right-1 top-2 ">
+              <svg class="w-6 h-6 fill-slate-300  hover:fill-slate-400 transition-all duration-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  >
+                <path  d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
+              </svg>
+            </button>
+          </label>
+        </div>
+      </div>
       <!-- to-do cards -->
-      <div class="p-2 text-2xl grid lg:grid-cols-3 sm:grid-cols-2 gap-3 place-items-center items-center">
-        <div class="group flex flex-col w-full max-w-sm h-96 bg-slate-100 text-center  rounded-md ">
+      <div class="p-6 text-2xl grid lg:grid-cols-3 sm:grid-cols-2 gap-3 place-items-center items-center mx-auto w-fit">
+        <div class="group flex flex-col w-full max-w-sm h-96 bg-white  border text-center  rounded-md ">
            <div class="flex-grow relative">
-              <div class="mt-4">todo-1</div>
+              <div class="py-4 bg-pink-100 text-sm font-bold text-neutral-700 shadow">Check it out</div>
                 <!-- pin button -->
                 <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-500">
                 <button class="transition-transform transform active:scale-95">
@@ -45,61 +60,61 @@
               <div class="text-sm pt-4 max-h-72 flex justify-center overflow-hidden hover:overflow-y-auto">
                 <ul class="flex flex-col gap-2">
                   
-                  <li class="group/tasks flex items-center w-full p-2 space-x-2 rounded-md hover:bg-gray-300 border-b-[1px] border-gray-300  ">
-                    <input type="checkbox" id="task1" class="peer rounded-full min-w-[1rem] w-4 h-4 appearance-none border-2 border-pink-300 checked:bg-gray-400 active:scale-125 transition-all">
+                  <li class="group/tasks flex items-center w-full p-2 space-x-2 rounded-md border-b-[1px] border-gray-300  ">
+                    <input type="checkbox" id="task1" class="peer rounded-full min-w-[1rem] w-4 h-4 appearance-none border-2 border-pink-300 checked:bg-pink-100 active:scale-125 transition-all">
                     <label for="task1" class="flex-grow cursor-pointer max-w-[12rem] text-start text-gray-600 peer-checked:text-gray-400 peer-checked:line-through ">Lorem ipsum dolor.</label>
                     <button class="transition-transform transform active:scale-95">
-                      <svg class="w-4 h-4 fill-slate-700 scale-0 group-hover/tasks:scale-100 transition-all duration-500 hover:fill-pink-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+                      <svg class="w-4 h-4 fill-slate-300 scale-0 group-hover/tasks:scale-100 transition-all duration-500 hover:fill-pink-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
                       <path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
                       </svg>
                     </button>
                     <button class="transition-transform transform active:scale-95">
-                      <svg class="w-4 h-4 stroke-slate-700 scale-0 group-hover/tasks:scale-100 hover:stroke-pink-300 transition-all duration-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <svg class="w-4 h-4 stroke-slate-300 scale-0 group-hover/tasks:scale-100 hover:stroke-pink-300 transition-all duration-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                       </svg>
                     </button>
                   </li>
 
-                  <li class="group/tasks flex items-center p-2 space-x-2 rounded-md hover:bg-gray-300 border-b-[1px] border-gray-300">
-                    <input type="checkbox" id="task2" class="peer rounded-full min-w-[1rem] w-4 h-4 appearance-none border-2 border-pink-300 checked:bg-gray-400 active:scale-125 transition-all">
+                  <li class="group/tasks flex items-center p-2 space-x-2 rounded-md  border-b-[1px] border-gray-300">
+                    <input type="checkbox" id="task2" class="peer rounded-full min-w-[1rem] w-4 h-4 appearance-none border-2 border-pink-300 checked:bg-pink-100 active:scale-125 transition-all">
                     <label for="task2" class="flex-grow cursor-pointer max-w-[12rem] text-start text-gray-600 peer-checked:text-gray-400 peer-checked:line-through">Lorem, ipsum dolor sit amet consectetur adipisicing.</label>
                     <button class="transition-transform transform active:scale-95">
-                      <svg class="w-4 h-4 fill-slate-700 scale-0 group-hover/tasks:scale-100 transition-all duration-500 hover:fill-pink-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+                      <svg class="w-4 h-4 fill-slate-300 scale-0 group-hover/tasks:scale-100 transition-all duration-500 hover:fill-pink-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
                       <path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
                       </svg>
                     </button>
                     <button class="transition-transform transform active:scale-95">
-                      <svg class="w-4 h-4 stroke-slate-700 scale-0 group-hover/tasks:scale-100 hover:stroke-pink-300 transition-all duration-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <svg class="w-4 h-4 stroke-slate-300 scale-0 group-hover/tasks:scale-100 hover:stroke-pink-300 transition-all duration-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                       </svg>
                     </button>                    
                   </li>
 
-                  <li class="group/tasks flex items-center p-2 space-x-2 rounded-md hover:bg-gray-300 border-b-[1px] border-gray-300">
-                    <input type="checkbox" id="task3" class="peer rounded-full min-w-[1rem] w-4 h-4 appearance-none border-2 border-pink-300 checked:bg-gray-400 active:scale-125 transition-all">
+                  <li class="group/tasks flex items-center p-2 space-x-2 rounded-md  border-b-[1px] border-gray-300">
+                    <input type="checkbox" id="task3" class="peer rounded-full min-w-[1rem] w-4 h-4 appearance-none border-2 border-pink-300 checked:bg-pink-100 active:scale-125 transition-all">
                     <label for="task3" class="flex-grow cursor-pointer max-w-[12rem] text-start text-gray-600 peer-checked:text-gray-400 peer-checked:line-through">Lorem, ipsum dolor sit amet.</label>
                     <button class="transition-transform transform active:scale-95">
-                      <svg class="w-4 h-4 fill-slate-700 scale-0 group-hover/tasks:scale-100 transition-all duration-500 hover:fill-pink-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+                      <svg class="w-4 h-4 fill-slate-300 scale-0 group-hover/tasks:scale-100 transition-all duration-500 hover:fill-pink-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
                       <path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
                       </svg>
                     </button>
                     <button class="transition-transform transform active:scale-95">
-                      <svg class="w-4 h-4 stroke-slate-700 scale-0 group-hover/tasks:scale-100 hover:stroke-pink-300 transition-all duration-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <svg class="w-4 h-4 stroke-slate-300 scale-0 group-hover/tasks:scale-100 hover:stroke-pink-300 transition-all duration-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                       </svg>
                     </button>                    
                   </li>
                   
-                  <li class="group/tasks flex items-center p-2 space-x-2 rounded-md hover:bg-gray-300 border-b-[1px] border-gray-300">
-                    <input type="checkbox" id="task4" class="peer rounded-full min-w-[1rem] w-4 h-4 appearance-none border-2 border-pink-300 checked:bg-gray-400 active:scale-125 transition-all">
+                  <li class="group/tasks flex items-center p-2 space-x-2 rounded-md  border-b-[1px] border-gray-300">
+                    <input type="checkbox" id="task4" class="peer rounded-full min-w-[1rem] w-4 h-4 appearance-none border-2 border-pink-300 checked:bg-pink-100 active:scale-125 transition-all">
                     <label for="task4" class="flex-grow cursor-pointer max-w-[12rem] text-start text-gray-600 peer-checked:text-gray-400 peer-checked:line-through">Lorem, ipsum dolor.</label>
                     <button class="transition-transform transform active:scale-95">
-                      <svg class="w-4 h-4 fill-slate-700 scale-0 group-hover/tasks:scale-100 transition-all duration-500 hover:fill-pink-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+                      <svg class="w-4 h-4 fill-slate-300 scale-0 group-hover/tasks:scale-100 transition-all duration-500 hover:fill-pink-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
                       <path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
                       </svg>
                     </button>
                     <button class="transition-transform transform active:scale-95">
-                      <svg class="w-4 h-4 stroke-slate-700 scale-0 group-hover/tasks:scale-100 hover:stroke-pink-300 transition-all duration-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <svg class="w-4 h-4 stroke-slate-300 scale-0 group-hover/tasks:scale-100 hover:stroke-pink-300 transition-all duration-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                       </svg>
                     </button>                    
@@ -110,10 +125,10 @@
             <!-- actions -->
            <div class="p-2 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-all duration-500">
               <!-- New task input  -->
-              <div class="scale-0  group-hover:scale-100 flex">
-                <input class="text-sm p-1 ml-2 bg-slate-100 border-2" type="text" id="new-task" placeholder="Add new task...">
+              <div class="scale-0  group-hover:scale-100 flex relative">
+                <input class="text-sm p-1 ml-2 pr-4 bg-slate-100 border-2 focus:outline-pink-300 " type="text" id="new-task" placeholder="Add new task...">
                 <label for="new-task">
-                  <button class="transition-transform active:scale-95 ">
+                  <button class="transition-transform active:scale-95 absolute right-1 top-1 ">
                     <svg class="w-6 h-6 ml-2 fill-slate-300 scale-0  group-hover:scale-100 hover:fill-pink-300 transition-all duration-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  >
                       <path  d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
                     </svg>
