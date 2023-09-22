@@ -1,19 +1,19 @@
 import { loadProject, saveProject } from './storage.js';
-import { startListener, newCard, newTask } from './displayController.js';
+import { startListener, newCard, newTask, colors } from './displayController.js';
 
 function loadTodoList (projectList, projectIndex) {
   const todo = projectList[projectIndex]["todo-list"];
 
   for (let i = 0; i < todo.length; i++) {
-    console.log("Card:", todo[i].title);
-      let taskContainer = newCard(todo[i].title);
+    let color = colors[todo[i].color];
+    let taskContainer = newCard(todo[i].title, color);
     for (let j = 0; j < todo[i].tasks.length; j++) {
-      console.log("Task:", todo[i].tasks[j].task)
-      newTask(taskContainer, todo[i].tasks[j].task)
+      newTask(taskContainer, todo[i].tasks[j].task, color)
     }
   }
 }
 
+// saveProject()
 const projectList = loadProject();
 console.log(typeof(projectList)) 
 loadTodoList(projectList, 0);

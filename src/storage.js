@@ -11,6 +11,7 @@ const defaultTodolist =
          "title": "Daily Routine",
          "dueDate": "15/12/2023",
          "priority": "high",
+         "color": "red",
          "complete": true,
          "tasks": [
            {
@@ -36,6 +37,7 @@ const defaultTodolist =
          "title": "Weekly tasks",
          "dueDate": "15/12/2023",
          "priority": "low",
+         "color": "lime",
          "complete": true,
          "tasks": [
            {
@@ -58,6 +60,7 @@ const defaultTodolist =
          "title": "Monthly tasks",
          "dueDate": "15/12/2023",
          "priority": "low",
+         "color": "cyan",
          "complete": true,
          "tasks": [
            {
@@ -91,6 +94,7 @@ const defaultTodolist =
          "title": "Job Search",
          "dueDate": "20/03/2024",
          "priority": "high",
+         "color": "purple",
          "complete": false,
          "tasks": [
            {
@@ -116,6 +120,7 @@ const defaultTodolist =
          "title": "Skill Development",
          "dueDate": "15/01/2024",
          "priority": "low",
+         "color": "pink",
          "complete": false,
          "tasks": [
            {
@@ -144,6 +149,7 @@ const defaultTodolist =
          "title": "Kitchen Renovation",
          "dueDate": "28/02/2024",
          "priority": "high",
+         "color": "teal",
          "complete": false,
          "tasks": [
            {
@@ -165,6 +171,7 @@ const defaultTodolist =
          "title": "Garden Makeover",
          "dueDate": "30/04/2024",
          "priority": "low",
+         "color": "lime",
          "complete": false,
          "tasks": [
            {
@@ -207,6 +214,7 @@ export const loadProject = () => {
 }
 
 export const saveProject = (todoList) => {
-  localStorage.setItem("todolist", JSON.stringify(defaultTodolist));
+  // localStorage.setItem("todolist", JSON.stringify(todoList));
+  localStorage.setItem("todolist", defaultTodolist);
 }
 

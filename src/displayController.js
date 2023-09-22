@@ -1,3 +1,13 @@
+export const colors = {
+  red: "#fecaca",
+  lime: "#d9f99d",
+  cyan: "#a5f3fc",
+  purple: "#e9d5ff",
+  pink: "#fbcfe8",
+  teal: "#99f6e4",
+  defaultColor: "#ffedd5"
+}
+
 export const startListener = () => {
 
 const btnMobileMenu = document.querySelector(".js-btn-mobile-menu");
