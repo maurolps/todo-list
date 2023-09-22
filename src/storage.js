@@ -14,11 +14,11 @@ const defaultTodolist =
          "complete": true,
          "tasks": [
            {
-             "task1": "It's working part 1",
+             "task": "It's working part 1",
              "complete": false
            },
            {
-             "task2": "It's working part 2",
+             "task": "It's working part 2",
              "complete": true
            }
          ]
@@ -32,11 +32,11 @@ const defaultTodolist =
          "complete": true,
          "tasks": [
            {
-             "task1": "It's working part 1",
+             "task": "It's working part 1",
              "complete": false
            },
            {
-             "task2": "It's working part 2",
+             "task": "It's working part 2",
              "complete": true
            }
          ]
@@ -56,11 +56,11 @@ const defaultTodolist =
          "complete": true,
          "tasks": [
            {
-             "task1": "It's working part 1 - prj2",
+             "task": "It's working part 1 - prj2",
              "complete": false
            },
            {
-             "task2": "It's working part 2 - prj2",
+             "task": "It's working part 2 - prj2",
              "complete": true
            }
          ]
@@ -74,11 +74,11 @@ const defaultTodolist =
          "complete": true,
          "tasks": [
            {
-             "task1": "It's working part 1 - prj2",
+             "task": "It's working part 1 - prj2",
              "complete": false
            },
            {
-             "task2": "It's working part 2 - prj2",
+             "task": "It's working part 2 - prj2",
              "complete": true
            }
          ]
