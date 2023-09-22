@@ -27,13 +27,17 @@ export function newCard (title, color) {
   const newTodoCard = cardTemplate.content.cloneNode(true);
   const taskContainer = newTodoCard.querySelector('.js-task-container');
   const cardTitle = newTodoCard.querySelector('.js-card-title');
+
   const btnNewTask = newTodoCard.querySelector('.js-btn-newtask');
+  const btnPalette = newTodoCard.querySelector('.js-btn-palette');
   const inputNewTask = newTodoCard.querySelector('.js-input-newtask');  
+
 
   const themeColor = themeColors[color] || themeColors.defaultColor;
 
   cardTitle.style.backgroundColor = themeColor;
   cardTitle.textContent = title;
+  btnPalette.style.color = themeColor;
   cardContainer.appendChild(newTodoCard);
 
   const newTask = (taskText) => {
@@ -59,6 +63,10 @@ export function newCard (title, color) {
         newTask(inputText);
         inputNewTask.value = "";
       }
+    })
+
+    btnPalette.addEventListener('click', () =>{
+
     })
 
   }

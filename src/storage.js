@@ -200,7 +200,6 @@ export const loadProject = () => {
     console.log ("Data found! Loading your To-do list...");
     try { 
       parseList = JSON.parse(todoList);
-      console.log('type: ', typeof(parseList));
     } catch (err) {
       console.log('Parser error. Loading default To-do list... ');
       return JSON.parse(defaultTodolist);
