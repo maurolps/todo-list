@@ -1,4 +1,4 @@
-import { loadProject } from './storage.js';
+import { loadProject, saveProject } from './storage.js';
 import { startListener, newCard, newTask } from './displayController.js';
 
 function loadTodoList (projectList, projectIndex) {
@@ -15,6 +15,7 @@ function loadTodoList (projectList, projectIndex) {
 }
 
 const projectList = loadProject();
+console.log(typeof(projectList)) 
 loadTodoList(projectList, 0);
 
 let taskContainer = newCard('Check it out 1', 'pink');
