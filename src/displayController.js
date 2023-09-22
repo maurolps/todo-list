@@ -27,6 +27,8 @@ export function newCard (title, color) {
   const newTodoCard = cardTemplate.content.cloneNode(true);
   const taskContainer = newTodoCard.querySelector('.js-task-container');
   const cardTitle = newTodoCard.querySelector('.js-card-title');
+  const btnNewTask = newTodoCard.querySelector('.js-btn-newtask');
+  const inputNewTask = newTodoCard.querySelector('.js-input-newtask');  
 
   const themeColor = themeColors[color] || themeColors.defaultColor;
 
@@ -40,6 +42,28 @@ export function newCard (title, color) {
     addTask.querySelector('.js-task-text').textContent = taskText;
     taskContainer.appendChild(addTask);
   }
+
+  const clickHandler = () => {
+
+    btnNewTask.addEventListener('click', () => {
+      const inputText = inputNewTask.value;
+      if (inputText !== "" ) {
+        newTask(inputText);
+        inputNewTask.value = "";
+      }
+    })
+
+    inputNewTask.addEventListener('keydown', (e) => {
+      const inputText = inputNewTask.value;
+      if (e.keyCode === 13 && inputText !== "") {
+        newTask(inputText);
+        inputNewTask.value = "";
+      }
+    })
+
+  }
+
+  clickHandler();
 
   return {newTask};
 }
