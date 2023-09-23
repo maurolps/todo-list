@@ -23,6 +23,7 @@ export function newCard (title, color) {
   const cardContainer = document.getElementById('js-card-container');
   const cardTemplate = document.getElementById('js-card-template');
   const taskTemplate = document.getElementById('js-task-template');
+  const inputNewCard = document.querySelector('.js-input-newcard');  
   
   const newTodoCard = cardTemplate.content.cloneNode(true);
   const taskContainer = newTodoCard.querySelector('.js-task-container');
@@ -30,8 +31,8 @@ export function newCard (title, color) {
 
   const btnNewTask = newTodoCard.querySelector('.js-btn-newtask');
   const btnPalette = newTodoCard.querySelector('.js-btn-palette');
-  const inputNewTask = newTodoCard.querySelector('.js-input-newtask');  
-
+  const inputNewTask = newTodoCard.querySelector('.js-input-newtask');
+  const cardScale = newTodoCard.querySelector('.js-card-scale');
 
   const themeColor = themeColors[color] || themeColors.defaultColor;
 
@@ -40,6 +41,15 @@ export function newCard (title, color) {
   btnPalette.style.color = themeColor;
   cardContainer.appendChild(newTodoCard);
 
+  const animateCard = () => {
+    setTimeout(() => {
+      cardScale.classList.remove("scale-0");
+      setTimeout(() => {
+        cardScale.classList.remove("scale-0");
+      }, 1000);
+    }, 100);
+  }
+
   const newTask = (taskText) => {
     const addTask = taskTemplate.content.cloneNode(true);
     addTask.querySelector(".js-bordercolor").style.borderColor = themeColor;
@@ -47,7 +57,7 @@ export function newCard (title, color) {
     taskContainer.appendChild(addTask);
   }
 
-  const clickHandler = () => {
+  const cardClickHandler = () => {
 
     btnNewTask.addEventListener('click', () => {
       const inputText = inputNewTask.value;
@@ -65,13 +75,23 @@ export function newCard (title, color) {
       }
     })
 
+    inputNewCard.addEventListener('keydown', (e) => {
+      const newCardTitle = inputNewCard.value;
+
+      if (e.keyCode === 13 && newCardTitle !== "") {
+        newCard(newCardTitle, "defaultColor");
+        inputNewCard.value = "";
+      }
+    })
+
     btnPalette.addEventListener('click', () =>{
 
     })
 
   }
 
-  clickHandler();
+  animateCard();
+  cardClickHandler();
 
   return {newTask};
 }
