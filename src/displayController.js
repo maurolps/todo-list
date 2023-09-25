@@ -1,6 +1,7 @@
 let taskIndex = 0;
+let paletteIndex = 3;
 
-export const themeColors = {
+const themeColors = {
   red: "#fecaca",
   lime: "#d9f99d",
   cyan: "#a5f3fc",
@@ -36,7 +37,7 @@ export function newCard (title, color) {
   const inputNewTask = newTodoCard.querySelector('.js-input-newtask');
   const cardScale = newTodoCard.querySelector('.js-card-scale');
 
-  const themeColor = themeColors[color] || themeColors.defaultColor;
+  let themeColor = themeColors[color] || themeColors.defaultColor;
 
   cardTitle.style.backgroundColor = themeColor;
   cardTitle.textContent = title;
@@ -93,8 +94,16 @@ export function newCard (title, color) {
     })
 
     btnPalette.addEventListener('click', () =>{
+      themeColor = Object.values(themeColors)[paletteIndex]
+      paletteIndex++
+      if (paletteIndex > 6) paletteIndex = 0;
+      cardTitle.style.backgroundColor = themeColor;
+      btnPalette.style.color = themeColor; 
+      cardScale.querySelectorAll('input').forEach((input) => {
+        if (input.id != "new-task") input.style.borderColor = themeColor;
+      });
 
-    })
+    });
 
   }
 
