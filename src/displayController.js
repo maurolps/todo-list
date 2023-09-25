@@ -1,3 +1,5 @@
+let taskIndex = 0;
+
 export const themeColors = {
   red: "#fecaca",
   lime: "#d9f99d",
@@ -23,7 +25,7 @@ export function newCard (title, color) {
   const cardContainer = document.getElementById('js-card-container');
   const cardTemplate = document.getElementById('js-card-template');
   const taskTemplate = document.getElementById('js-task-template');
-  const inputNewCard = document.querySelector('.js-input-newcard');  
+  const inputNewCard = document.querySelector('.js-input-newcard');  // move this to outside
   
   const newTodoCard = cardTemplate.content.cloneNode(true);
   const taskContainer = newTodoCard.querySelector('.js-task-container');
@@ -51,9 +53,15 @@ export function newCard (title, color) {
   }
 
   const newTask = (taskText) => {
+    taskIndex++;
     const addTask = taskTemplate.content.cloneNode(true);
-    addTask.querySelector(".js-bordercolor").style.borderColor = themeColor;
-    addTask.querySelector('.js-task-text').textContent = taskText;
+    const taskInput = addTask.querySelector(".js-task-input");
+    const taskLabel = addTask.querySelector('.js-task-label');
+
+    taskInput.style.borderColor = themeColor;
+    taskLabel.textContent = taskText;
+    taskInput.id = "task" + taskIndex.toString();
+    taskLabel.htmlFor = "task" + taskIndex.toString();
     taskContainer.appendChild(addTask);
   }
 
