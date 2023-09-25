@@ -19,15 +19,36 @@
     <!-- Sidebar -->
     <div class="js-sidebar z-50 shadow-sm bg-white text-neutral-700 w-56 flex flex-col gap-10 items-center
     absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
-      <div class="flex justify-center w-full py-11 border-b-2 border-gray-100">
-        <span class="text-2xl font-extrabold">PROJECTS</span>
+      <div class="flex justify-center w-full h-[122px] border-b-2 border-gray-100">
       </div>
-      <nav>
-        <ul class="text-lg">
+      <nav class="flex flex-col gap-7">
+        <span class="text-2xl font-extrabold">PROJECTS</span>
+        <ul class="js-projects-container text-2xl">
           <li><button>Workout</button></li>
           <li><button>Web devel</button></li>
-          <li><button>Daily tasks</button></li>
+          <li><button>Daily tasks</button></li>          
+          <template id="new-project-template">
+            <li><button class="js-btn">Daily tasks</button></li>
+          </template>
+
         </ul>
+        <div class="flex items-center relative my-4">
+          <button class="js-btn-addproject transition-transform active:scale-95 absolute right-1/2 bottom-1/2 z-50">
+            <svg class="w-10 h-10 fill-neutral-300  hover:fill-neutral-500 transition-all duration-200" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  >
+              <path  d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
+            </svg>
+          </button>
+          <div class="js-newproject relative transition-all duration-200 scale-0">
+            <input class="js-input-newproject text-neutral-400 bg-neutral-50 scale-100 text-sm p-2 focus:outline-neutral-300 " type="text" id="new-project" placeholder="New project...">
+            <label for="new-project">
+              <button class="js-btn-newproject transition-transform active:scale-95 absolute right-1 top-1 ">
+                <svg class="w-6 h-6 ml-2 fill-neutral-300 hover:fill-neutral-500 transition-all duration-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  >
+                  <path  d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
+                </svg>
+              </button>
+            </label>
+          </div>
+        </div>
       </nav>
     </div>
 
@@ -37,7 +58,7 @@
         <div class="my-10 w-fit relative flex justify-center">
           <input class="js-input-newcard text-sm p-2  bg-transparent w-72 border-2 focus:outline-neutral-400 " type="text" id="new-task" placeholder="New To-do list...">
           <label for="new-task">
-            <button class="absolute right-1 top-2 ">
+            <button class="js-btn-newcard absolute right-1 top-2 transition-transform active:scale-95">
               <svg class="w-6 h-6 fill-neutral-300  hover:fill-neutral-500 transition-all duration-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  >
                 <path  d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
               </svg>
@@ -89,7 +110,7 @@
                     </svg>
                   </button>
                   <!-- trash -->
-                  <button class="transition-transform active:scale-95">
+                  <button class="js-btn-trash transition-transform active:scale-95">
                     <svg class="w-6 h-6 stroke-neutral-300 scale-0  group-hover:scale-100 hover:stroke-neutral-500 transition-all duration-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                     </svg>
@@ -101,7 +122,7 @@
         </template>
   
         <template id="js-task-template">
-          <li class="group/tasks flex items-center w-full p-2 space-x-2 rounded-md border-b-[1px] border-gray-300  ">
+          <li class="group/tasks flex items-center w-60 p-2 space-x-2 rounded-md border-b-[1px] border-gray-300  ">
             <input type="checkbox" id="task1" class="js-task-input peer rounded-full min-w-[1rem] w-4 h-4 appearance-none border-2 border-pink-300 checked:bg-neutral-300 active:scale-125 transition-all">
             <label for="task1" class="js-task-label flex-grow cursor-pointer max-w-[12rem] text-start text-neutral-500 peer-checked:text-neutral-400 peer-checked:line-through ">Lorem ipsum dolor.</label>
             <button class="transition-transform transform active:scale-95">

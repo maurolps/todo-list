@@ -1,5 +1,5 @@
-import { loadProject, saveProject } from './storage.js';
-import { startListener, newCard } from './displayController.js';
+import { loadProject } from './storage.js';
+import { docClickHandler, newCard } from './displayController.js';
 
 function loadTodoList (projectList, projectIndex) {
   const todo = projectList[projectIndex]["todo-list"];
@@ -12,12 +12,7 @@ function loadTodoList (projectList, projectIndex) {
   }
 }
 
-// saveProject()
 const projectList = loadProject();
 loadTodoList(projectList, 0);
-
-// const addCard = newCard("Example card", "cyan");
-// addCard.newTask('HelloWorld');
-
-// startListener();
+docClickHandler();
 

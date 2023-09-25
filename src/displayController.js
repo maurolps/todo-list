@@ -11,14 +11,74 @@ const themeColors = {
   defaultColor: "#ffedd5"
 }
 
-export const startListener = () => {
+export const docClickHandler = () => {
 
-const btnMobileMenu = document.querySelector(".js-btn-mobile-menu");
-const siderBar = document.querySelector(".js-sidebar");
+  const btnMobileMenu = document.querySelector(".js-btn-mobile-menu");
+  const siderBar = document.querySelector(".js-sidebar");
+  const inputNewCard = document.querySelector('.js-input-newcard'); 
+  const btnNewCard = document.querySelector('.js-btn-newcard');
+  const btnAddProject = document.querySelector('.js-btn-addproject');
+  const newProjectContainer = document.querySelector('.js-newproject');
+  const newProjectInput = document.querySelector('.js-input-newproject');
+  const btnNewProject = document.querySelector('.js-btn-newproject');
+  const projectsContainer = document.querySelector('.js-projects-container');
+  const newProject = document.getElementById('new-project-template').content.cloneNode(true);
 
-btnMobileMenu.addEventListener("click", () => {
-  siderBar.classList.toggle("-translate-x-full");
-})
+  btnAddProject.addEventListener('click', () => {
+    newProjectContainer.classList.add('scale-100');
+    btnAddProject.classList.add('scale-0');
+    newProjectInput.focus();
+  })
+  
+  newProjectInput.addEventListener('keydown', (e) => {
+    const newProjectName = newProjectInput.value;
+    if (e.keyCode === 13 && newProjectName !== "") {
+      newProjectInput.value = '';
+      setTimeout(() => {
+        btnAddProject.classList.remove('scale-0');
+      }, 2000);
+      newProjectContainer.classList.remove('scale-100');
+      newProject.querySelector('.js-btn').textContent = newProjectName;
+      projectsContainer.appendChild(newProject);
+      // newProject(newProjectName);
+    }
+  })
+
+  btnNewProject.addEventListener('click', () => {
+    const newProjectName = newProjectInput.value;
+    if (newProjectName !== "") {
+      newProjectInput.value = '';
+      setTimeout(() => {
+        btnAddProject.classList.remove('scale-0');
+      }, 2000);
+      newProjectContainer.classList.remove('scale-100');
+      newProject.querySelector('.js-btn').textContent = newProjectName;
+      projectsContainer.appendChild(newProject);
+      // newProject(newProjectName);
+    }
+  })
+
+  btnMobileMenu.addEventListener("click", () => {
+    siderBar.classList.toggle("-translate-x-full");
+  })
+  
+  inputNewCard.addEventListener('keydown', (e) => {
+    const newCardTitle = inputNewCard.value;
+    if (e.keyCode === 13 && newCardTitle !== "") {
+      newCard(newCardTitle, "defaultColor");
+      inputNewCard.value = "";
+    }
+  })
+
+  btnNewCard.addEventListener('click', () => {
+    const newCardTitle = inputNewCard.value;
+
+    if (newCardTitle !== "") {
+      newCard(newCardTitle, "defaultColor");
+      inputNewCard.value = "";
+    }
+  })
+
 
 }
 
@@ -26,7 +86,6 @@ export function newCard (title, color) {
   const cardContainer = document.getElementById('js-card-container');
   const cardTemplate = document.getElementById('js-card-template');
   const taskTemplate = document.getElementById('js-task-template');
-  const inputNewCard = document.querySelector('.js-input-newcard');  // move this to outside
   
   const newTodoCard = cardTemplate.content.cloneNode(true);
   const taskContainer = newTodoCard.querySelector('.js-task-container');
@@ -34,6 +93,7 @@ export function newCard (title, color) {
 
   const btnNewTask = newTodoCard.querySelector('.js-btn-newtask');
   const btnPalette = newTodoCard.querySelector('.js-btn-palette');
+  const btnTrash = newTodoCard.querySelector('.js-btn-trash');
   const inputNewTask = newTodoCard.querySelector('.js-input-newtask');
   const cardScale = newTodoCard.querySelector('.js-card-scale');
 
@@ -84,16 +144,7 @@ export function newCard (title, color) {
       }
     })
 
-    inputNewCard.addEventListener('keydown', (e) => {
-      const newCardTitle = inputNewCard.value;
-
-      if (e.keyCode === 13 && newCardTitle !== "") {
-        newCard(newCardTitle, "defaultColor");
-        inputNewCard.value = "";
-      }
-    })
-
-    btnPalette.addEventListener('click', () =>{
+    btnPalette.addEventListener('click', () => {
       themeColor = Object.values(themeColors)[paletteIndex]
       paletteIndex++
       if (paletteIndex > 6) paletteIndex = 0;
@@ -104,6 +155,10 @@ export function newCard (title, color) {
       });
 
     });
+
+    btnTrash.addEventListener('click', () => {
+      cardScale.remove();
+    })
 
   }
 
