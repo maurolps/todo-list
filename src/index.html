@@ -17,23 +17,35 @@
       </button>
     </div>
     <!-- Sidebar -->
-    <div class="js-sidebar z-50 shadow-sm bg-white text-neutral-700 w-56 flex flex-col gap-10 items-center
+    <div class="js-sidebar z-50 shadow-sm bg-white w-56 flex flex-col gap-10 items-center
     absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
-      <div class="flex justify-center w-full h-[122px] border-b-2 border-gray-100">
+      <div class="flex font-bold text-neutral-700 justify-center items-center w-full h-[122px] border-b-2 border-gray-100">
+        TO-DO
       </div>
-      <nav class="flex flex-col gap-7">
-        <span class="text-2xl font-extrabold">PROJECTS</span>
-        <ul class="js-projects-container text-2xl">
-          <li><button>Workout</button></li>
-          <li><button>Web devel</button></li>
-          <li><button>Daily tasks</button></li>          
+      <nav class="flex flex-col gap-7 items-center bg-gradient-to-b  rounded-md py-4 ">
+        <div>
+          <svg class="w-6 fill-neutral-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z" /></svg>
+        </div>
+        <ul class="js-projects-container text-sm uppercase font-bold text-neutral-300 p-5">
+          <div>
+            <input type="radio" name="option" id="1" value="1" class="peer hidden" checked />
+            <label for="1" class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">workout</label>
+          </div>
+          <div>
+            <input type="radio" name="option" id="2" value="2" class="peer hidden" checked />
+            <label for="2" class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">webdev</label>
+          </div>
+          <div>
+            <input type="radio" name="option" id="3" value="3" class="peer hidden" checked />
+            <label for="3" class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">career</label>
+          </div>   
           <template id="new-project-template">
-            <li><button class="js-btn">Daily tasks</button></li>
+            <li><button class="js-btn uppercase">Daily tasks</button></li>
           </template>
 
         </ul>
         <div class="flex items-center relative my-4">
-          <button class="js-btn-addproject transition-transform active:scale-95 absolute right-1/2 bottom-1/2 z-50">
+          <button class="js-btn-addproject transition-transform active:scale-95 absolute right-[75px] bottom-1/2  z-50">
             <svg class="w-10 h-10 fill-neutral-300  hover:fill-neutral-500 transition-all duration-200" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  >
               <path  d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
             </svg>
