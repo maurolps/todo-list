@@ -2,13 +2,13 @@ let taskIndex = 0;
 let paletteIndex = 3;
 
 const themeColors = {
-  red: "#fecaca",
-  lime: "#d9f99d",
-  cyan: "#a5f3fc",
-  purple: "#e9d5ff",
-  pink: "#fbcfe8",
-  teal: "#99f6e4",
-  defaultColor: "#ffedd5"
+  red: "#fca5a5",
+  lime: "#a3e635",
+  cyan: "#67e8f9",
+  purple: "#d8b4fe",
+  pink: "#f9a8d4",
+  teal: "#5eead4",
+  defaultColor: "#fdba74"
 }
 
 export const docClickHandler = () => {

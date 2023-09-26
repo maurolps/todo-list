@@ -6,6 +6,9 @@
   <title>To-Do List</title>
   <script src="../src/index.js" type="module"></script>
   <link rel="stylesheet" href="../dist/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Montserrat:wght@700&family=Open+Sans:wght@300&family=Roboto&family=Squada+One&display=swap" rel="stylesheet">
 </head>
 <body class="font-['Roboto'] "> 
   <div class="relative min-h-screen md:flex justify-center">
@@ -22,35 +25,37 @@
       <div class="flex font-bold text-neutral-700 justify-center items-center w-full h-[122px] border-b-2 border-gray-100">
         TO-DO
       </div>
-      <nav class="flex flex-col gap-7 items-center bg-gradient-to-b  rounded-md py-4 ">
+      <nav class="flex flex-col gap-7 items-center rounded-md py-4 justify-center ">
         <div>
           <svg class="w-6 fill-neutral-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z" /></svg>
         </div>
-        <ul class="js-projects-container text-sm uppercase font-bold text-neutral-300 p-5">
+        <ul class="js-projects-container text-base space uppercase font-bold text-neutral-300 tracking-widest p-5">
           <div>
             <input type="radio" name="option" id="1" value="1" class="peer hidden" checked />
-            <label for="1" class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">workout</label>
+            <label for="1" class="block cursor-pointer select-none rounded-md p-2 text-center hover:text-neutral-500 peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">workout</label>
           </div>
           <div>
             <input type="radio" name="option" id="2" value="2" class="peer hidden" checked />
-            <label for="2" class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">webdev</label>
+            <label for="2" class="block cursor-pointer select-none rounded-md p-2 text-center hover:text-neutral-500 peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">webdev</label>
           </div>
           <div>
             <input type="radio" name="option" id="3" value="3" class="peer hidden" checked />
-            <label for="3" class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">career</label>
+            <label for="3" class="block cursor-pointer select-none rounded-md p-2 text-center hover:text-neutral-500 peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">career</label>
           </div>   
           <template id="new-project-template">
             <li><button class="js-btn uppercase">Daily tasks</button></li>
           </template>
 
         </ul>
-        <div class="flex items-center relative my-4">
-          <button class="js-btn-addproject transition-transform active:scale-95 absolute right-[75px] bottom-1/2  z-50">
+        <!-- Add project button  -->
+        <div class="flex items-center justify-center flex-col relative my-4">
+          <button class="js-btn-addproject transition-transform active:scale-95 absolute z-50">
             <svg class="w-10 h-10 fill-neutral-300  hover:fill-neutral-500 transition-all duration-200" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  >
               <path  d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
             </svg>
           </button>
-          <div class="js-newproject relative transition-all duration-200 scale-0">
+          <!-- New project input -->
+          <div class="js-newproject relative transition-all duration-200 scale-0"> 
             <input class="js-input-newproject text-neutral-400 bg-neutral-50 scale-100 text-sm p-2 focus:outline-neutral-300 " type="text" id="new-project" placeholder="New project...">
             <label for="new-project">
               <button class="js-btn-newproject transition-transform active:scale-95 absolute right-1 top-1 ">
@@ -64,9 +69,9 @@
       </nav>
     </div>
 
-    <div class="bg-white flex-1">
-      <!-- New to-do list input  -->
-      <div class="bg-gradient-to-r from-white to-neutral-100 flex justify-center shadow">
+    <div class="flex-1 bg-gradient-to-r from-white to-neutral-200 ">
+      <!-- Header to-do list input  -->
+      <div class=" flex justify-center  shadow">
         <div class="my-10 w-fit relative flex justify-center">
           <input class="js-input-newcard text-sm p-2  bg-transparent w-72 border-2 focus:outline-neutral-400 " type="text" id="new-task" placeholder="New To-do list...">
           <label for="new-task">
@@ -80,77 +85,75 @@
       </div>
 
       <!-- to-do cards container -->
-      <div id="js-card-container" class="p-6 text-2xl grid lg:grid-cols-3 sm:grid-cols-2 gap-3 place-items-center items-center mx-auto w-fit">
-
-        <template id="js-card-template">
-          <div class="js-card-scale group flex flex-col w-full max-w-sm h-96 bg-neutral-50  border text-center  rounded-md transition-all duration-500 scale-0">
-            <div class="flex-grow relative">
-              <div class="js-card-title py-4 bg-pink-100 text-sm font-bold text-neutral-700 shadow">
-                Check it out
-              </div>
-              <!-- pin button -->
-              <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                <button class="transition-transform transform active:scale-95">
-                  <svg class="w-6 h-6 fill-neutral-400 scale-0 group-hover:scale-100 hover:fill-neutral-600 transition-all duration-500 hover:scale-110" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" /></svg>
-                </button>
-              </div>
-                <!-- tasks -->
-                <div class="text-sm pt-4 max-h-72 flex justify-center overflow-hidden hover:overflow-y-auto">
-                  <ul class="js-task-container flex flex-col gap-2">
-                    <!-- task-template enter here  -->
-                  </ul>
+      <div class="">
+        <div id="js-card-container" class="p-6 text-2xl grid lg:grid-cols-3 sm:grid-cols-2 gap-3 mx-auto w-fit">
+          <template id="js-card-template">
+            <div class="js-card-scale group flex flex-col w-full max-w-sm max-h-[800px] bg-gradient-to-b from-neutral-100 to-white  border text-center shadow-sm  rounded-md transition-all duration-500 scale-0">
+              <div class="flex-grow relative">
+                <div class="js-card-title py-4 bg-pink-100 text-base uppercase  font-bold text-neutral-600 shadow">
+                  Check it out
                 </div>
-            </div>
-              <!-- actions -->
-            <div class="p-2 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                <!-- New task input  -->
-                <div class="scale-0  group-hover:scale-100 flex relative">
-                  <input class="js-input-newtask text-neutral-400 bg-neutral-50 text-sm p-1 ml-2 pr-4 border-2 focus:outline-neutral-400 " type="text" id="new-task" placeholder="Add new task...">
-                  <label for="new-task">
-                    <button class="js-btn-newtask transition-transform active:scale-95 absolute right-1 top-1 ">
-                      <svg class="w-6 h-6 ml-2 fill-neutral-300 scale-0  group-hover:scale-100 hover:fill-neutral-500 transition-all duration-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  >
-                        <path  d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
+                <!-- pin button -->
+                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <button class="transition-transform transform active:scale-95">
+                    <svg class="w-6 h-6 fill-neutral-400 scale-0 group-hover:scale-100 hover:fill-neutral-600 transition-all duration-500 hover:scale-110" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" /></svg>
+                  </button>
+                </div>
+                  <!-- tasks -->
+                  <div class="text-sm pt-4 max-h-[400px] flex justify-center overflow-hidden hover:overflow-y-auto">
+                    <ul class="js-task-container flex flex-col gap-2">
+                      <!-- task-template enter here  -->
+                    </ul>
+                  </div>
+              </div>
+                <!-- actions -->
+              <div class="p-2 my-4 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <!-- New task input  -->
+                  <div class="scale-0  group-hover:scale-100 flex relative">
+                    <input class="js-input-newtask text-neutral-400 bg-neutral-50 text-sm p-1 ml-2 pr-4 border-2 focus:outline-neutral-400 " type="text" id="new-task" placeholder="Add new task...">
+                    <label for="new-task">
+                      <button class="js-btn-newtask transition-transform active:scale-95 absolute right-1 top-1 ">
+                        <svg class="w-6 h-6 ml-2 fill-neutral-300 scale-0  group-hover:scale-100 hover:fill-neutral-500 transition-all duration-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  >
+                          <path  d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
+                        </svg>
+                      </button>
+                    </label>
+                  </div>
+                  <div class="flex ml-4 justify-center items-center">
+                    <!-- palette  -->
+                    <button class="js-btn-palette transition-transform active:scale-95 ">
+                      <svg class="w-6 h-6 fill-current scale-0  group-hover:scale-100 hover:saturate-[8] transition-all duration-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  >
+                        <path d="M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M14.5,8A1.5,1.5 0 0,1 13,6.5A1.5,1.5 0 0,1 14.5,5A1.5,1.5 0 0,1 16,6.5A1.5,1.5 0 0,1 14.5,8M9.5,8A1.5,1.5 0 0,1 8,6.5A1.5,1.5 0 0,1 9.5,5A1.5,1.5 0 0,1 11,6.5A1.5,1.5 0 0,1 9.5,8M6.5,12A1.5,1.5 0 0,1 5,10.5A1.5,1.5 0 0,1 6.5,9A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 6.5,12M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A1.5,1.5 0 0,0 13.5,19.5C13.5,19.11 13.35,18.76 13.11,18.5C12.88,18.23 12.73,17.88 12.73,17.5A1.5,1.5 0 0,1 14.23,16H16A5,5 0 0,0 21,11C21,6.58 16.97,3 12,3Z" /> />
                       </svg>
                     </button>
-                  </label>
-                </div>
-                <div>
-                  <!-- palette  -->
-                  <button class="js-btn-palette transition-transform active:scale-95 ">
-                    <svg class="w-6 h-6 fill-current scale-0  group-hover:scale-100 hover:saturate-[8] transition-all duration-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  >
-                      <path d="M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M14.5,8A1.5,1.5 0 0,1 13,6.5A1.5,1.5 0 0,1 14.5,5A1.5,1.5 0 0,1 16,6.5A1.5,1.5 0 0,1 14.5,8M9.5,8A1.5,1.5 0 0,1 8,6.5A1.5,1.5 0 0,1 9.5,5A1.5,1.5 0 0,1 11,6.5A1.5,1.5 0 0,1 9.5,8M6.5,12A1.5,1.5 0 0,1 5,10.5A1.5,1.5 0 0,1 6.5,9A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 6.5,12M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A1.5,1.5 0 0,0 13.5,19.5C13.5,19.11 13.35,18.76 13.11,18.5C12.88,18.23 12.73,17.88 12.73,17.5A1.5,1.5 0 0,1 14.23,16H16A5,5 0 0,0 21,11C21,6.58 16.97,3 12,3Z" /> />
-                    </svg>
-                  </button>
-                  <!-- trash -->
-                  <button class="js-btn-trash transition-transform active:scale-95">
-                    <svg class="w-6 h-6 stroke-neutral-300 scale-0  group-hover:scale-100 hover:stroke-neutral-500 transition-all duration-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                    </svg>
-                  </button>
-                </div>
+                    <!-- trash -->
+                    <button class="js-btn-trash transition-transform active:scale-95">
+                      <svg class="w-6 h-6 stroke-neutral-300 scale-0  group-hover:scale-100 hover:stroke-neutral-500 transition-all duration-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                      </svg>
+                    </button>
+                  </div>
+              </div>
+        
             </div>
-          
-          </div>
-        </template>
-  
-        <template id="js-task-template">
-          <li class="group/tasks flex items-center w-60 p-2 space-x-2 rounded-md border-b-[1px] border-gray-300  ">
-            <input type="checkbox" id="task1" class="js-task-input peer rounded-full min-w-[1rem] w-4 h-4 appearance-none border-2 border-pink-300 checked:bg-neutral-300 active:scale-125 transition-all">
-            <label for="task1" class="js-task-label flex-grow cursor-pointer max-w-[12rem] text-start text-neutral-500 peer-checked:text-neutral-400 peer-checked:line-through ">Lorem ipsum dolor.</label>
-            <button class="transition-transform transform active:scale-95">
-              <svg class="w-4 h-4 fill-neutral-300 scale-0 group-hover/tasks:scale-100 transition-all duration-500 hover:fill-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
-              <path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
-              </svg>
-            </button>
-            <button class="transition-transform transform active:scale-95">
-              <svg class="w-4 h-4 stroke-neutral-300 scale-0 group-hover/tasks:scale-100 hover:stroke-neutral-500 transition-all duration-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-              </svg>
-            </button>
-          </li>
-        </template>
-  
-  
+          </template>
+          <template id="js-task-template">
+            <li class="group/tasks flex items-center w-60 p-2 space-x-2 border-b-[1px] border-gray-300  ">
+              <input type="checkbox" id="task1" class="js-task-input peer rounded-full min-w-[1rem] w-4 h-4 appearance-none border-2 border-pink-300 checked:bg-neutral-300 active:scale-125 transition-all">
+              <label for="task1" class="js-task-label flex-grow cursor-pointer max-w-[12rem] text-start text-base tracking-wide text-neutral-500 peer-checked:text-neutral-400 peer-checked:line-through ">Lorem ipsum dolor.</label>
+              <button class="transition-transform transform active:scale-95">
+                <svg class="w-4 h-4 fill-neutral-300 scale-0 group-hover/tasks:scale-100 transition-all duration-500 hover:fill-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+                <path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+                </svg>
+              </button>
+              <button class="transition-transform transform active:scale-95">
+                <svg class="w-4 h-4 stroke-neutral-300 scale-0 group-hover/tasks:scale-100 hover:stroke-neutral-500 transition-all duration-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                </svg>
+              </button>
+            </li>
+          </template>
+        </div>
       </div>
     </div>
   </div>
