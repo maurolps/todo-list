@@ -76,9 +76,8 @@
         </div>
       </div>
 
-      <!-- to-do cards container -->
-      <div class="">
-        <div id="js-card-container" class="p-6 text-2xl grid lg:grid-cols-3 sm:grid-cols-2 gap-3 mx-auto w-fit">
+      <!-- Templates -->
+      <div>
           <template id="js-card-template">
             <div class="js-card-scale group flex flex-col w-full max-w-sm max-h-[800px] bg-gradient-to-b from-neutral-100 to-white  border text-center shadow-sm  rounded-md transition-all duration-500 scale-0">
               <div class="flex-grow relative">
@@ -94,7 +93,7 @@
                   <!-- tasks -->
                   <div class="text-sm pt-4 max-h-[400px] flex justify-center overflow-hidden hover:overflow-y-auto">
                     <ul class="js-task-container flex flex-col gap-2">
-                      <!-- task-template enter here  -->
+                      <!-- task-template enter here by js -->
                     </ul>
                   </div>
               </div>
@@ -126,9 +125,9 @@
                     </button>
                   </div>
               </div>
-        
             </div>
           </template>
+
           <template id="js-task-template">
             <li class="group/tasks flex items-center w-60 p-2 space-x-2 border-b-[1px] border-gray-300  ">
               <input type="checkbox" id="task1" class="js-task-input peer rounded-full min-w-[1rem] w-4 h-4 appearance-none border-2 border-pink-300 checked:bg-neutral-300 active:scale-125 transition-all">
@@ -144,8 +143,13 @@
                 </svg>
               </button>
             </li>
-          </template>
+          </template>     
+
+        <!-- to-do cards container -->
+        <div id="js-card-container" class="p-6 text-2xl grid lg:grid-cols-3 sm:grid-cols-2 gap-3 mx-auto w-fit">
+          <!-- Card template enter here by js -->
         </div>
+
       </div>
     </div>
   </div>
