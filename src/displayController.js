@@ -1,3 +1,5 @@
+import { LoadProjects } from './storage.js';
+
 let taskIndex = 0;
 let paletteIndex = 3;
 let projectIndex = 0;
@@ -14,16 +16,24 @@ const themeColors = {
 
 export function newProjectMenu (projectName) {
   projectIndex++;
+  const cardContainer = document.getElementById('js-card-container');
   const projectsContainer = document.querySelector('.js-projects-container');
   const newProject = document.getElementById('new-project-template').content.cloneNode(true);
   const labelNewPrj = newProject.querySelector('.js-label-newprj');
   const inputNewPrj = newProject.querySelector('.js-input-newprj');
-  inputNewPrj.id = 'prj' + projectIndex.toString();
+  inputNewPrj.id = projectIndex.toString();
   labelNewPrj.textContent = projectName;
-  labelNewPrj.htmlFor = 'prj' + projectIndex.toString();
+  labelNewPrj.htmlFor = projectIndex.toString();
   if (projectIndex === 1) inputNewPrj.setAttribute('checked', true);
   projectsContainer.appendChild(newProject);
-  
+
+  inputNewPrj.addEventListener('change', (e) => {
+    cardContainer.innerHTML = '';
+    const projectList = LoadProjects();
+    const projectId = inputNewPrj.id - 1;
+    projectList.loadTodoList(projectId);
+  });
+
 }
 
 export const docClickHandler = () => {
@@ -73,7 +83,7 @@ export const docClickHandler = () => {
   inputNewCard.addEventListener('keydown', (e) => {
     const newCardTitle = inputNewCard.value;
     if (e.keyCode === 13 && newCardTitle !== "") {
-      newCard(newCardTitle, "defaultColor");
+      NewCard(newCardTitle, "defaultColor");
       inputNewCard.value = "";
     }
   })
@@ -82,7 +92,7 @@ export const docClickHandler = () => {
     const newCardTitle = inputNewCard.value;
 
     if (newCardTitle !== "") {
-      newCard(newCardTitle, "defaultColor");
+      NewCard(newCardTitle, "defaultColor");
       inputNewCard.value = "";
     }
   })
@@ -90,7 +100,7 @@ export const docClickHandler = () => {
 
 }
 
-export function newCard (title, color) {
+export function NewCard (title, color) {
   const cardContainer = document.getElementById('js-card-container');
   const cardTemplate = document.getElementById('js-card-template');
   const taskTemplate = document.getElementById('js-task-template');
