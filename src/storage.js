@@ -193,7 +193,9 @@ const defaultTodolist =
    ]
    `
 
-export const loadProjects = () => {
+import {NewCard, newProjectMenu} from './displayController.js';
+
+export const LoadProjects = () => {
   const todoList = localStorage.getItem("todolist");
   let parseList = {};
   if (todoList !== null) {
@@ -202,14 +204,32 @@ export const loadProjects = () => {
       parseList = JSON.parse(todoList);
     } catch (err) {
       console.log('Parser error. Loading default To-do list... ');
-      return JSON.parse(defaultTodolist);
+      parseList = JSON.parse(defaultTodolist);
     }
-    return parseList; 
   } else {
     console.log("Data not found. Creating default To-do list...");
     localStorage.setItem("todolist", defaultTodolist);
-    return JSON.parse(defaultTodolist);
+    parseList = JSON.parse(defaultTodolist);
   }
+
+  const loadTodoList = (projectIndex) => {
+    const todo = parseList[projectIndex]["todo-list"];
+  
+    for (let i = 0; i < todo.length; i++) {
+      const addCard = NewCard(todo[i].title, todo[i].color);
+      for (let j = 0; j < todo[i].tasks.length; j++) {
+        addCard.newTask(todo[i].tasks[j].task);
+      }
+    }
+  }
+
+  const loadMenu = () => {
+    for (let i = 0; i < parseList.length; i++) {
+      newProjectMenu(parseList[i].title);
+    }
+  }
+
+  return {loadTodoList, loadMenu}
 }
 
 export const saveProject = (todoList) => {
