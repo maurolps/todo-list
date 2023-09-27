@@ -193,7 +193,7 @@ const defaultTodolist =
    ]
    `
 
-export const loadProject = () => {
+export const loadProjects = () => {
   const todoList = localStorage.getItem("todolist");
   let parseList = {};
   if (todoList !== null) {

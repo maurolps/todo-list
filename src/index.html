@@ -27,26 +27,18 @@
       </div>
       <nav class="flex flex-col gap-7 items-center rounded-md py-4 justify-center ">
         <div>
-          <svg class="w-6 fill-neutral-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z" /></svg>
+          <svg class="w-8 fill-neutral-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z" /></svg>
         </div>
-        <ul class="js-projects-container text-base space uppercase font-bold text-neutral-300 tracking-widest p-5">
-          <div>
-            <input type="radio" name="option" id="1" value="1" class="peer hidden" checked />
-            <label for="1" class="block cursor-pointer select-none rounded-md p-2 text-center hover:text-neutral-500 peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">workout</label>
-          </div>
-          <div>
-            <input type="radio" name="option" id="2" value="2" class="peer hidden" checked />
-            <label for="2" class="block cursor-pointer select-none rounded-md p-2 text-center hover:text-neutral-500 peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">webdev</label>
-          </div>
-          <div>
-            <input type="radio" name="option" id="3" value="3" class="peer hidden" checked />
-            <label for="3" class="block cursor-pointer select-none rounded-md p-2 text-center hover:text-neutral-500 peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">career</label>
-          </div>   
-          <template id="new-project-template">
-            <li><button class="js-btn uppercase">Daily tasks</button></li>
-          </template>
 
-        </ul>
+        <!-- Projects menu Container  -->
+        <div class="js-projects-container text-base space uppercase font-bold text-neutral-300 tracking-widest p-5">
+          <template id="new-project-template">
+            <div>
+              <input type="radio" name="project-menu" id="0" class="js-input-newprj peer hidden"  />
+              <label for="0" class="js-label-newprj block cursor-pointer select-none rounded-md p-2 text-center hover:text-neutral-500 peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">career</label>
+            </div> 
+          </template>
+        </div>
         <!-- Add project button  -->
         <div class="flex items-center justify-center flex-col relative my-4">
           <button class="js-btn-addproject transition-transform active:scale-95 absolute z-50">

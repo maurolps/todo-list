@@ -1,5 +1,6 @@
 let taskIndex = 0;
 let paletteIndex = 3;
+let projectIndex = 0;
 
 const themeColors = {
   red: "#fca5a5",
@@ -11,8 +12,21 @@ const themeColors = {
   defaultColor: "#fdba74"
 }
 
-export const docClickHandler = () => {
+export function newProjectMenu (projectName) {
+  projectIndex++;
+  const projectsContainer = document.querySelector('.js-projects-container');
+  const newProject = document.getElementById('new-project-template').content.cloneNode(true);
+  const labelNewPrj = newProject.querySelector('.js-label-newprj');
+  const inputNewPrj = newProject.querySelector('.js-input-newprj');
+  inputNewPrj.id = 'prj' + projectIndex.toString();
+  labelNewPrj.textContent = projectName;
+  labelNewPrj.htmlFor = 'prj' + projectIndex.toString();
+  if (projectIndex === 1) inputNewPrj.setAttribute('checked', true);
+  projectsContainer.appendChild(newProject);
+  
+}
 
+export const docClickHandler = () => {
   const btnMobileMenu = document.querySelector(".js-btn-mobile-menu");
   const siderBar = document.querySelector(".js-sidebar");
   const inputNewCard = document.querySelector('.js-input-newcard'); 
@@ -21,8 +35,6 @@ export const docClickHandler = () => {
   const newProjectContainer = document.querySelector('.js-newproject');
   const newProjectInput = document.querySelector('.js-input-newproject');
   const btnNewProject = document.querySelector('.js-btn-newproject');
-  const projectsContainer = document.querySelector('.js-projects-container');
-  const newProject = document.getElementById('new-project-template').content.cloneNode(true);
 
   btnAddProject.addEventListener('click', () => {
     newProjectContainer.classList.add('scale-100');
@@ -38,9 +50,7 @@ export const docClickHandler = () => {
         btnAddProject.classList.remove('scale-0');
       }, 2000);
       newProjectContainer.classList.remove('scale-100');
-      newProject.querySelector('.js-btn').textContent = newProjectName;
-      projectsContainer.appendChild(newProject);
-      // newProject(newProjectName);
+      newProjectMenu(newProjectName);
     }
   })
 
@@ -52,9 +62,7 @@ export const docClickHandler = () => {
         btnAddProject.classList.remove('scale-0');
       }, 2000);
       newProjectContainer.classList.remove('scale-100');
-      newProject.querySelector('.js-btn').textContent = newProjectName;
-      projectsContainer.appendChild(newProject);
-      // newProject(newProjectName);
+      newProjectMenu(newProjectName);
     }
   })
 

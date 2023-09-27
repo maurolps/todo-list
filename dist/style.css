@@ -805,6 +805,10 @@ video {
   width: 0.75rem;
 }
 
+.w-8 {
+  width: 2rem;
+}
+
 .min-w-\[1rem\] {
   min-width: 1rem;
 }

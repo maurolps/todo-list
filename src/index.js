@@ -1,5 +1,5 @@
-import { loadProject } from './storage.js';
-import { docClickHandler, newCard } from './displayController.js';
+import { loadProjects } from './storage.js';
+import { docClickHandler, newCard, newProjectMenu } from './displayController.js';
 
 function loadTodoList (projectList, projectIndex) {
   const todo = projectList[projectIndex]["todo-list"];
@@ -12,7 +12,14 @@ function loadTodoList (projectList, projectIndex) {
   }
 }
 
-const projectList = loadProject();
+function loadPrjList (projectList) {
+  for (let i = 0; i < projectList.length; i++) {
+    newProjectMenu(projectList[i].title);
+  }
+}
+
+const projectList = loadProjects();
 loadTodoList(projectList, 0);
 docClickHandler();
+loadPrjList(projectList);
 
