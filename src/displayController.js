@@ -136,12 +136,57 @@ export function NewCard (title, color) {
     const addTask = taskTemplate.content.cloneNode(true);
     const taskInput = addTask.querySelector(".js-task-input");
     const taskLabel = addTask.querySelector('.js-task-label');
+    const btnTrash = addTask.querySelector('.js-btn-deltask');
+    const btnEditTask = addTask.querySelector('.js-btn-edittask');
+    const inputEditTask = addTask.querySelector('.js-input-edittask');
+    const btnEditCancel = addTask.querySelector('.js-btn-editcancel');
+    const editTaskContainer = addTask.querySelector('.js-edittask');
+    const task = addTask.querySelector('.js-task');
 
     taskInput.style.borderColor = themeColor;
     taskLabel.textContent = taskText;
     taskInput.id = "task" + taskIndex.toString();
     taskLabel.htmlFor = "task" + taskIndex.toString();
     taskContainer.appendChild(addTask);
+
+    const toggleEdit = (editing = true) => {
+      editTaskContainer.classList.toggle('scale-0');
+      btnTrash.classList.toggle('scale-0');
+      btnEditTask.classList.toggle('scale-0');
+      if (editing) {
+        taskLabel.classList.toggle('scale-0');
+        inputEditTask.focus();
+      } else {
+        setTimeout(() => {
+          taskLabel.classList.toggle('scale-0');
+        }, 500);
+      }
+    }
+
+    inputEditTask.addEventListener('keydown', (e) => {
+      const inputText = inputEditTask.value;
+      if (e.keyCode === 13 && inputText !== "") {
+        taskLabel.textContent = inputText;
+        inputEditTask.value = "";
+        inputEditTask.blur();
+      }
+    })
+
+    btnEditCancel.addEventListener('click', () => {
+      toggleEdit(false);
+    })
+
+    btnTrash.addEventListener('click', () => {
+      task.remove();
+    })
+
+    btnEditTask.addEventListener('click', () => {
+      toggleEdit();
+    })
+
+    inputEditTask.addEventListener('blur', () => {
+      toggleEdit(false);
+    })
   }
 
   const cardClickHandler = () => {
