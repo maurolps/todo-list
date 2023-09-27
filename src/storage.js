@@ -10,7 +10,7 @@ const defaultTodolist =
          "name": "todo",
          "title": "Daily Routine",
          "dueDate": "15/12/2023",
-         "priority": "high",
+         "priority": true,
          "color": "red",
          "complete": true,
          "tasks": [
@@ -36,7 +36,7 @@ const defaultTodolist =
          "name": "todo",
          "title": "Weekly tasks",
          "dueDate": "15/12/2023",
-         "priority": "low",
+         "priority": false,
          "color": "lime",
          "complete": true,
          "tasks": [
@@ -59,7 +59,7 @@ const defaultTodolist =
          "name": "todo",
          "title": "Monthly tasks",
          "dueDate": "15/12/2023",
-         "priority": "low",
+         "priority": false,
          "color": "cyan",
          "complete": true,
          "tasks": [
@@ -93,7 +93,7 @@ const defaultTodolist =
          "name": "todo",
          "title": "Job Search",
          "dueDate": "20/03/2024",
-         "priority": "high",
+         "priority": false,
          "color": "purple",
          "complete": false,
          "tasks": [
@@ -119,7 +119,7 @@ const defaultTodolist =
          "name": "todo",
          "title": "Skill Development",
          "dueDate": "15/01/2024",
-         "priority": "low",
+         "priority": true,
          "color": "pink",
          "complete": false,
          "tasks": [
@@ -148,7 +148,7 @@ const defaultTodolist =
          "name": "todo",
          "title": "Kitchen Renovation",
          "dueDate": "28/02/2024",
-         "priority": "high",
+         "priority": true,
          "color": "teal",
          "complete": false,
          "tasks": [
@@ -170,7 +170,7 @@ const defaultTodolist =
          "name": "todo",
          "title": "Garden Makeover",
          "dueDate": "30/04/2024",
-         "priority": "low",
+         "priority": false,
          "color": "lime",
          "complete": false,
          "tasks": [
@@ -216,7 +216,7 @@ export const LoadProjects = () => {
     const todo = parseList[projectIndex]["todo-list"];
   
     for (let i = 0; i < todo.length; i++) {
-      const addCard = NewCard(todo[i].title, todo[i].color);
+      const addCard = NewCard(todo[i].title, todo[i].color, todo[i].priority);
       for (let j = 0; j < todo[i].tasks.length; j++) {
         addCard.newTask(todo[i].tasks[j].task);
       }

@@ -21,6 +21,9 @@ export function newProjectMenu (projectName) {
   const newProject = document.getElementById('new-project-template').content.cloneNode(true);
   const labelNewPrj = newProject.querySelector('.js-label-newprj');
   const inputNewPrj = newProject.querySelector('.js-input-newprj');
+  const btnProjectTrash = newProject.querySelector('.js-btn-prj-trash');
+  const newProjectContainer = newProject.querySelector('.js-new-proj-container');
+
   inputNewPrj.id = projectIndex.toString();
   labelNewPrj.textContent = projectName;
   labelNewPrj.htmlFor = projectIndex.toString();
@@ -34,6 +37,14 @@ export function newProjectMenu (projectName) {
     projectList.loadTodoList(projectId);
   });
 
+  btnProjectTrash.addEventListener('click', () => {
+    const confirmTrash = confirm(`Remove project: ${projectName} ?`);
+    if (confirmTrash) { 
+      newProjectContainer.innerHTML = '';
+      cardContainer.innerHTML = '';
+    }
+  })
+
 }
 
 export const docClickHandler = () => {
@@ -44,7 +55,7 @@ export const docClickHandler = () => {
   const btnAddProject = document.querySelector('.js-btn-addproject');
   const newProjectContainer = document.querySelector('.js-newproject');
   const newProjectInput = document.querySelector('.js-input-newproject');
-  const btnNewProject = document.querySelector('.js-btn-newproject');
+  const btnNewCancel = document.querySelector('.js-btn-new-cancel');
 
   btnAddProject.addEventListener('click', () => {
     newProjectContainer.classList.add('scale-100');
@@ -56,24 +67,20 @@ export const docClickHandler = () => {
     const newProjectName = newProjectInput.value;
     if (e.keyCode === 13 && newProjectName !== "") {
       newProjectInput.value = '';
-      setTimeout(() => {
-        btnAddProject.classList.remove('scale-0');
-      }, 2000);
-      newProjectContainer.classList.remove('scale-100');
+      newProjectInput.blur();
       newProjectMenu(newProjectName);
     }
   })
 
-  btnNewProject.addEventListener('click', () => {
-    const newProjectName = newProjectInput.value;
-    if (newProjectName !== "") {
-      newProjectInput.value = '';
-      setTimeout(() => {
-        btnAddProject.classList.remove('scale-0');
-      }, 2000);
-      newProjectContainer.classList.remove('scale-100');
-      newProjectMenu(newProjectName);
-    }
+  newProjectInput.addEventListener('blur', () => {
+    setTimeout(() => {
+      btnAddProject.classList.remove('scale-0');
+    }, 300);
+    newProjectContainer.classList.remove('scale-100');
+  })
+
+  btnNewCancel.addEventListener('click', () => {
+    newProjectInput.blur();
   })
 
   btnMobileMenu.addEventListener("click", () => {
@@ -100,7 +107,7 @@ export const docClickHandler = () => {
 
 }
 
-export function NewCard (title, color) {
+export function NewCard (title, color, priority) {
   const cardContainer = document.getElementById('js-card-container');
   const cardTemplate = document.getElementById('js-card-template');
   const taskTemplate = document.getElementById('js-task-template');
@@ -108,6 +115,8 @@ export function NewCard (title, color) {
   const newTodoCard = cardTemplate.content.cloneNode(true);
   const taskContainer = newTodoCard.querySelector('.js-task-container');
   const cardTitle = newTodoCard.querySelector('.js-card-title');
+  const cardPin = newTodoCard.querySelector('.js-pin');
+  const cardUnPin = newTodoCard.querySelector('.js-unpin');
 
   const btnNewTask = newTodoCard.querySelector('.js-btn-newtask');
   const btnPalette = newTodoCard.querySelector('.js-btn-palette');
@@ -120,8 +129,14 @@ export function NewCard (title, color) {
   cardTitle.style.backgroundColor = themeColor;
   cardTitle.textContent = title;
   btnPalette.style.color = themeColor;
-  cardContainer.appendChild(newTodoCard);
 
+  if (priority) {
+    cardContainer.insertBefore(newTodoCard, cardContainer.firstChild);
+    cardPin.classList.toggle('scale-0');
+  } else {
+    cardContainer.appendChild(newTodoCard);
+    cardUnPin.classList.toggle('scale-0');
+  }
   const animateCard = () => {
     setTimeout(() => {
       cardScale.classList.remove("scale-0");
@@ -159,7 +174,7 @@ export function NewCard (title, color) {
       } else {
         setTimeout(() => {
           taskLabel.classList.toggle('scale-0');
-        }, 500);
+        }, 300);
       }
     }
 
@@ -189,7 +204,22 @@ export function NewCard (title, color) {
     })
   }
 
+  const togglePin = () => {
+    cardUnPin.classList.toggle('scale-0');
+    cardPin.classList.toggle('scale-0');
+  }
+
   const cardClickHandler = () => {
+
+    cardPin.addEventListener('click', () => {
+      cardContainer.appendChild(cardScale);
+      togglePin();
+    })
+
+    cardUnPin.addEventListener('click', () => {
+      cardContainer.insertBefore(cardScale, cardContainer.firstChild);
+      togglePin();
+    })
 
     btnNewTask.addEventListener('click', () => {
       const inputText = inputNewTask.value;
