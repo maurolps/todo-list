@@ -1,8 +1,10 @@
-import { LoadProjects } from './storage.js';
+import { LoadProjects, UpdateStorage } from './storage.js';
 
 let taskIndex = 0;
 let paletteIndex = 3;
 let projectIndex = 0;
+let cardIndex = 0;
+let currentProject = 0;
 
 const themeColors = {
   red: "#fca5a5",
@@ -15,7 +17,6 @@ const themeColors = {
 }
 
 export function newProjectMenu (projectName) {
-  projectIndex++;
   const cardContainer = document.getElementById('js-card-container');
   const projectsContainer = document.querySelector('.js-projects-container');
   const newProject = document.getElementById('new-project-template').content.cloneNode(true);
@@ -27,14 +28,18 @@ export function newProjectMenu (projectName) {
   inputNewPrj.id = projectIndex.toString();
   labelNewPrj.textContent = projectName;
   labelNewPrj.htmlFor = projectIndex.toString();
+
+  inputNewPrj.dataset.index = projectIndex;
+  projectIndex++;
   if (projectIndex === 1) inputNewPrj.setAttribute('checked', true);
   projectsContainer.appendChild(newProject);
 
   inputNewPrj.addEventListener('change', (e) => {
     cardContainer.innerHTML = '';
+    cardIndex = 0;
     const projectList = LoadProjects();
-    const projectId = inputNewPrj.id - 1;
-    projectList.loadTodoList(projectId);
+    currentProject = inputNewPrj.dataset.index
+    projectList.loadTodoList(currentProject);
   });
 
   btnProjectTrash.addEventListener('click', () => {
@@ -90,7 +95,7 @@ export const docClickHandler = () => {
   inputNewCard.addEventListener('keydown', (e) => {
     const newCardTitle = inputNewCard.value;
     if (e.keyCode === 13 && newCardTitle !== "") {
-      NewCard(newCardTitle, "defaultColor");
+      NewCard(newCardTitle, "defaultColor", false);
       inputNewCard.value = "";
     }
   })
@@ -99,7 +104,7 @@ export const docClickHandler = () => {
     const newCardTitle = inputNewCard.value;
 
     if (newCardTitle !== "") {
-      NewCard(newCardTitle, "defaultColor");
+      NewCard(newCardTitle, "defaultColor", false);
       inputNewCard.value = "";
     }
   })
@@ -108,6 +113,7 @@ export const docClickHandler = () => {
 }
 
 export function NewCard (title, color, priority) {
+  const updateStorage = UpdateStorage();
   const cardContainer = document.getElementById('js-card-container');
   const cardTemplate = document.getElementById('js-card-template');
   const taskTemplate = document.getElementById('js-task-template');
@@ -125,6 +131,9 @@ export function NewCard (title, color, priority) {
   const cardScale = newTodoCard.querySelector('.js-card-scale');
 
   let themeColor = themeColors[color] || themeColors.defaultColor;
+  cardScale.dataset.index = cardIndex;
+  cardIndex++;
+
 
   cardTitle.style.backgroundColor = themeColor;
   cardTitle.textContent = title;
@@ -146,7 +155,7 @@ export function NewCard (title, color, priority) {
     }, 100);
   }
 
-  const newTask = (taskText) => {
+  const newTask = (taskText, update = false) => {
     taskIndex++;
     const addTask = taskTemplate.content.cloneNode(true);
     const taskInput = addTask.querySelector(".js-task-input");
@@ -163,6 +172,8 @@ export function NewCard (title, color, priority) {
     taskInput.id = "task" + taskIndex.toString();
     taskLabel.htmlFor = "task" + taskIndex.toString();
     taskContainer.appendChild(addTask);
+
+    if (update) updateStorage.addTask(currentProject, cardScale.dataset.index, taskText);
 
     const toggleEdit = (editing = true) => {
       editTaskContainer.classList.toggle('scale-0');
@@ -224,15 +235,15 @@ export function NewCard (title, color, priority) {
     btnNewTask.addEventListener('click', () => {
       const inputText = inputNewTask.value;
       if (inputText !== "" ) {
-        newTask(inputText);
-        inputNewTask.value = "";
+        newTask(inputText, true);
+        inputNewTask.value = ""; 
       }
     })
 
     inputNewTask.addEventListener('keydown', (e) => {
       const inputText = inputNewTask.value;
       if (e.keyCode === 13 && inputText !== "") {
-        newTask(inputText);
+        newTask(inputText, true);
         inputNewTask.value = "";
       }
     })

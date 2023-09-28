@@ -195,11 +195,10 @@ const defaultTodolist =
 
 import {NewCard, newProjectMenu} from './displayController.js';
 
-export const LoadProjects = () => {
+function loadStorage () {
   const todoList = localStorage.getItem("todolist");
   let parseList = {};
   if (todoList !== null) {
-    console.log ("Data found! Loading your To-do list...");
     try { 
       parseList = JSON.parse(todoList);
     } catch (err) {
@@ -211,6 +210,11 @@ export const LoadProjects = () => {
     localStorage.setItem("todolist", defaultTodolist);
     parseList = JSON.parse(defaultTodolist);
   }
+  return parseList;
+}
+
+export const LoadProjects = () => {
+  const parseList = loadStorage();
 
   const loadTodoList = (projectIndex) => {
     const todo = parseList[projectIndex]["todo-list"];
@@ -232,8 +236,23 @@ export const LoadProjects = () => {
   return {loadTodoList, loadMenu}
 }
 
-export const saveProject = (todoList) => {
-  // localStorage.setItem("todolist", JSON.stringify(todoList));
-  localStorage.setItem("todolist", defaultTodolist);
+export const saveProject = (todoList, reset = false) => {
+  if (reset) {
+    localStorage.setItem("todolist", defaultTodolist);
+    return;
+  }
+  localStorage.setItem("todolist", JSON.stringify(todoList));
+  
 }
 
+export const UpdateStorage = () => {
+  const todoList = loadStorage();
+  const addTask = (projectIndex, cardIndex, task) => {
+    // console.log(`addTask (${projectIndex}, ${cardIndex}, ${task})`);
+    const newTask = { task, "complete": false };
+    todoList[projectIndex]["todo-list"][cardIndex].tasks.push(newTask);
+    saveProject(todoList);
+  }
+
+  return {addTask}
+}
