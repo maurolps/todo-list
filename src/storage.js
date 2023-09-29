@@ -250,7 +250,6 @@ export const saveProject = (todoList, reset = false) => {
 export const UpdateStorage = () => {
   const todoList = loadStorage();
   const saveTask = (projectIndex, cardIndex, task) => {
-    // console.log(`addTask (${projectIndex}, ${cardIndex}, ${task})`);
     const newTask = { task, "marked": false };
     todoList[projectIndex]["todo-list"][cardIndex].tasks.push(newTask);
     saveProject(todoList);
