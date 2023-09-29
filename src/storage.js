@@ -249,6 +249,7 @@ export const saveProject = (todoList, reset = false) => {
 
 export const UpdateStorage = () => {
   const todoList = loadStorage();
+
   const saveTask = (projectIndex, cardIndex, task) => {
     const newTask = { task, "marked": false };
     todoList[projectIndex]["todo-list"][cardIndex].tasks.push(newTask);
@@ -271,5 +272,15 @@ export const UpdateStorage = () => {
     saveProject(todoList);
   }
 
-  return {saveTask, saveCard, saveMark}
+  const saveEdit = (projectIndex, cardIndex, taskId, task) => {
+    todoList[projectIndex]["todo-list"][cardIndex].tasks[taskId].task =  task;
+    saveProject(todoList);
+  }
+
+  const saveTheme = (projectIndex, cardIndex, color) => {
+    todoList[projectIndex]["todo-list"][cardIndex].color =  color;
+    saveProject(todoList);
+  }
+
+  return {saveTask, saveCard, saveMark, saveEdit, saveTheme}
 }

@@ -207,9 +207,12 @@ export function NewCard (title, color, priority, updateCard = false) {
     })
 
     inputEditTask.addEventListener('keydown', (e) => {
+      const todoIndex = cardScale.dataset.index;
+      const tasksIndex = task.dataset.index;
       const inputText = inputEditTask.value;
       if (e.keyCode === 13 && inputText !== "") {
         taskLabel.textContent = inputText;
+        updateStorage.saveEdit(currentProject, todoIndex, tasksIndex, inputText);
         inputEditTask.value = "";
         inputEditTask.blur();
       }
@@ -266,6 +269,10 @@ export function NewCard (title, color, priority, updateCard = false) {
     })
 
     btnPalette.addEventListener('click', () => {
+      const todoIndex = cardScale.dataset.index;
+      const saveColor = Object.keys(themeColors)[paletteIndex];
+      updateStorage.saveTheme(currentProject, todoIndex, saveColor);
+      
       themeColor = Object.values(themeColors)[paletteIndex]
       paletteIndex++
       if (paletteIndex > 6) paletteIndex = 0;
