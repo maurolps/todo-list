@@ -284,7 +284,19 @@ export const UpdateStorage = () => {
   const savePin = (projectIndex, cardIndex, priority) => { 
   todoList[projectIndex]["todo-list"][cardIndex].priority = priority;
   saveProject(todoList);
+
+  }
+  const addProject = (title) => {
+    const newProject =  {
+      "name": "project", title,
+      "marked": false,
+      "todo-list": []
+    }
+    todoList.push(newProject);
+    saveProject(todoList);
+
   }
 
-  return {saveTask, saveCard, saveMark, saveEdit, saveTheme, savePin}
+
+  return {saveTask, saveCard, saveMark, saveEdit, saveTheme, savePin, addProject}
 }

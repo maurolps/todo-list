@@ -56,6 +56,7 @@ export function newProjectMenu (projectName) {
 }
 
 export const docClickHandler = () => {
+  const updateStorage = UpdateStorage();
   const btnMobileMenu = document.querySelector(".js-btn-mobile-menu");
   const siderBar = document.querySelector(".js-sidebar");
   const inputNewCard = document.querySelector('.js-input-newcard'); 
@@ -76,7 +77,7 @@ export const docClickHandler = () => {
     if (e.keyCode === 13 && newProjectName !== "") {
       newProjectInput.value = '';
       newProjectInput.blur();
-      
+      updateStorage.addProject(newProjectName);
       newProjectMenu(newProjectName);
     }
   })
