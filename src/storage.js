@@ -195,7 +195,7 @@ const defaultTodolist =
 
 import {NewCard, newProjectMenu} from './displayController.js';
 
-function loadStorage () {
+export function loadStorage () {
   const todoList = localStorage.getItem("todolist");
   let parseList = {};
   if (todoList !== null) {
@@ -247,40 +247,3 @@ export const saveProject = (todoList, reset = false) => {
 
 }
 
-export const UpdateStorage = () => {
-  const todoList = loadStorage();
-
-  const saveTask = (projectIndex, cardIndex, task) => {
-    const newTask = { task, "marked": false };
-    todoList[projectIndex]["todo-list"][cardIndex].tasks.push(newTask);
-    saveProject(todoList);
-  }
-
-  const saveCard = (projectIndex, title) => {
-    const newCard = {
-      "name": "todo", title,
-      "dueDate": "20/05/2025",
-      "priority": false,
-      "tasks": []
-    }
-    todoList[projectIndex]["todo-list"].push(newCard);
-    saveProject(todoList);
-  }
-
-  const saveMark = (projectIndex, cardIndex, taskId, marked) => {
-    todoList[projectIndex]["todo-list"][cardIndex].tasks[taskId].marked = marked;
-    saveProject(todoList);
-  }
-
-  const saveEdit = (projectIndex, cardIndex, taskId, task) => {
-    todoList[projectIndex]["todo-list"][cardIndex].tasks[taskId].task =  task;
-    saveProject(todoList);
-  }
-
-  const saveTheme = (projectIndex, cardIndex, color) => {
-    todoList[projectIndex]["todo-list"][cardIndex].color =  color;
-    saveProject(todoList);
-  }
-
-  return {saveTask, saveCard, saveMark, saveEdit, saveTheme}
-}

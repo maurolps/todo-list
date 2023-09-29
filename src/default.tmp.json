@@ -14,11 +14,11 @@
       "tasks": [
         {
           "task": "Wake up morning",
-          "marked": true
+          "marked": false
         },
         {
           "task": "30 min of cardio",
-          "marked": true
+          "marked": false
         },
         {
           "task": "Eat healthy meat",
@@ -36,7 +36,7 @@
       "dueDate": "15/12/2023",
       "priority": false,
       "color": "lime",
-      "marked": true,
+      "marked": false,
       "tasks": [
         {
           "task": "Exercise everyday",
@@ -44,7 +44,7 @@
         },
         {
           "task": "Plan your workouts",
-          "marked": true
+          "marked": false
         },
         {
           "task": "Stretch for 10 min after each workout",
@@ -59,7 +59,7 @@
       "dueDate": "15/12/2023",
       "priority": false,
       "color": "cyan",
-      "marked": true,
+      "marked": false,
       "tasks": [
         {
           "task": "Track your progress",
@@ -67,7 +67,7 @@
         },
         {
           "task": "Make adjustments to your workouts as needed",
-          "marked": true
+          "marked": false
         },
         {
           "task": "Set new goals for yourself",
@@ -97,11 +97,11 @@
       "tasks": [
         {
           "task": "Update resume",
-          "marked": true
+          "marked": false
         },
         {
           "task": "Create a LinkedIn profile",
-          "marked": true
+          "marked": false
         },
         {
           "task": "Research potential employers",
@@ -123,7 +123,7 @@
       "tasks": [
         {
           "task": "Identify skills to improve",
-          "marked": true
+          "marked": false
         },
         {
           "task": "Enroll in online courses",
@@ -174,11 +174,11 @@
       "tasks": [
         {
           "task": "Plan landscaping changes",
-          "marked": true
+          "marked": false
         },
         {
           "task": "Plant flowers",
-          "marked": true
+          "marked": false
         },
         {
           "task": "Create an outdoor seating area",

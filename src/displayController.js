@@ -1,4 +1,5 @@
-import { LoadProjects, UpdateStorage } from './storage.js';
+import { LoadProjects } from './storage.js';
+import { UpdateStorage } from './UpdateStorage.js';
 
 let taskIndex = 0;
 let markIndex = 0;
@@ -272,7 +273,7 @@ export function NewCard (title, color, priority, updateCard = false) {
       const todoIndex = cardScale.dataset.index;
       const saveColor = Object.keys(themeColors)[paletteIndex];
       updateStorage.saveTheme(currentProject, todoIndex, saveColor);
-      
+
       themeColor = Object.values(themeColors)[paletteIndex]
       paletteIndex++
       if (paletteIndex > 6) paletteIndex = 0;
