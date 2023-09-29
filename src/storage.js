@@ -1,5 +1,4 @@
 const defaultTodolist = 
-  `
   [
     {
      "name": "project",
@@ -12,7 +11,7 @@ const defaultTodolist =
          "dueDate": "15/12/2023",
          "priority": true,
          "color": "red",
-         "marked": true,
+         "marked": false,
          "tasks": [
            {
              "task": "Wake up morning",
@@ -20,7 +19,7 @@ const defaultTodolist =
            },
            {
              "task": "30 min of cardio",
-             "marked": true
+             "marked": false
            },
            {
              "task": "Eat healthy meat",
@@ -38,7 +37,7 @@ const defaultTodolist =
          "dueDate": "15/12/2023",
          "priority": false,
          "color": "lime",
-         "marked": true,
+         "marked": false,
          "tasks": [
            {
              "task": "Exercise everyday",
@@ -46,7 +45,7 @@ const defaultTodolist =
            },
            {
              "task": "Plan your workouts",
-             "marked": true
+             "marked": false
            },
            {
              "task": "Stretch for 10 min after each workout",
@@ -61,7 +60,7 @@ const defaultTodolist =
          "dueDate": "15/12/2023",
          "priority": false,
          "color": "cyan",
-         "marked": true,
+         "marked": false,
          "tasks": [
            {
              "task": "Track your progress",
@@ -69,7 +68,7 @@ const defaultTodolist =
            },
            {
              "task": "Make adjustments to your workouts as needed",
-             "marked": true
+             "marked": false
            },
            {
              "task": "Set new goals for yourself",
@@ -99,11 +98,11 @@ const defaultTodolist =
          "tasks": [
            {
              "task": "Update resume",
-             "marked": true
+             "marked": false
            },
            {
              "task": "Create a LinkedIn profile",
-             "marked": true
+             "marked": false
            },
            {
              "task": "Research potential employers",
@@ -125,7 +124,7 @@ const defaultTodolist =
          "tasks": [
            {
              "task": "Identify skills to improve",
-             "marked": true
+             "marked": false
            },
            {
              "task": "Enroll in online courses",
@@ -176,11 +175,11 @@ const defaultTodolist =
          "tasks": [
            {
              "task": "Plan landscaping changes",
-             "marked": true
+             "marked": false
            },
            {
              "task": "Plant flowers",
-             "marked": true
+             "marked": false
            },
            {
              "task": "Create an outdoor seating area",
@@ -190,12 +189,12 @@ const defaultTodolist =
        }
      ]
    }
-   ]
-   `
+  ]
+
 
 import {NewCard, newProjectMenu} from './displayController.js';
 
-export function loadStorage () {
+function loadStorage () {
   const todoList = localStorage.getItem("todolist");
   let parseList = {};
   if (todoList !== null) {
@@ -203,12 +202,12 @@ export function loadStorage () {
       parseList = JSON.parse(todoList);
     } catch (err) {
       console.log('Parser error. Loading default To-do list... ');
-      parseList = JSON.parse(defaultTodolist);
+      parseList = defaultTodolist;
     }
   } else {
     console.log("Data not found. Creating default To-do list...");
-    localStorage.setItem("todolist", defaultTodolist);
-    parseList = JSON.parse(defaultTodolist);
+    localStorage.setItem("todolist", JSON.stringify(defaultTodolist));
+    parseList = defaultTodolist;
   }
   return parseList;
 }
@@ -239,7 +238,7 @@ export const LoadProjects = () => {
 
 export const saveProject = (todoList, reset = false) => {
   if (reset) {
-    localStorage.setItem("todolist", defaultTodolist);
+    localStorage.setItem("todolist", JSON.stringify(defaultTodolist));
     return;
   } if (todoList !== null) {
   localStorage.setItem("todolist", JSON.stringify(todoList));
@@ -247,3 +246,45 @@ export const saveProject = (todoList, reset = false) => {
 
 }
 
+export const UpdateStorage = () => {
+  const todoList = loadStorage();
+
+  const saveTask = (projectIndex, cardIndex, task) => {
+    const newTask = { task, "marked": false };
+    todoList[projectIndex]["todo-list"][cardIndex].tasks.push(newTask);
+    saveProject(todoList);
+  }
+
+  const saveCard = (projectIndex, title) => {
+    const newCard = {
+      "name": "todo", title,
+      "dueDate": "20/05/2025",
+      "priority": false,
+      "tasks": []
+    }
+    todoList[projectIndex]["todo-list"].push(newCard);
+    saveProject(todoList);
+  }
+
+  const saveMark = (projectIndex, cardIndex, taskId, marked) => {
+    todoList[projectIndex]["todo-list"][cardIndex].tasks[taskId].marked = marked;
+    saveProject(todoList);
+  }
+
+  const saveEdit = (projectIndex, cardIndex, taskId, task) => {
+    todoList[projectIndex]["todo-list"][cardIndex].tasks[taskId].task =  task;
+    saveProject(todoList);
+  }
+
+  const saveTheme = (projectIndex, cardIndex, color) => {
+    todoList[projectIndex]["todo-list"][cardIndex].color =  color;
+    saveProject(todoList);
+  }
+
+  const savePin = (projectIndex, cardIndex, priority) => { 
+  todoList[projectIndex]["todo-list"][cardIndex].priority = priority;
+  saveProject(todoList);
+  }
+
+  return {saveTask, saveCard, saveMark, saveEdit, saveTheme, savePin}
+}

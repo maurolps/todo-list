@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do List</title>
+  <title>To-Do</title>
   <script src="../src/index.js" type="module"></script>
   <link rel="stylesheet" href="../dist/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -118,7 +118,7 @@
                   <!-- New task input  -->
                   <div class="scale-0  group-hover:scale-100 flex relative">
                     <input class="js-input-newtask text-neutral-400 bg-neutral-50 text-sm p-1 ml-2 pr-4 border-2 focus:outline-neutral-400 " type="text" id="new-task" placeholder="Add new task...">
-                    <label for="new-task">
+                    <label class="js-label-newtask" for="new-task">
                       <button class="js-btn-newtask transition-transform active:scale-95 absolute right-1 top-1 ">
                         <svg class="w-6 h-6 ml-2 fill-neutral-300 scale-0  group-hover:scale-100 hover:fill-neutral-500 transition-all duration-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  >
                           <path  d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
@@ -161,8 +161,8 @@
                 </button>
               </div>
               <div class="js-edittask absolute w-60 z-20 inset-0 left-4 transition-all duration-200 flex justify-center items-center scale-0"> 
-                <input class="js-input-edittask h-8 text-neutral-400 bg-white scale-100 text-sm p-2 focus:outline-none " type="text" id="new-project" placeholder="">
-                <label for="new-project">
+                <input class="js-input-edittask h-8 text-neutral-400 bg-white scale-100 text-sm p-2 focus:outline-none " type="text" id="edit-task" placeholder="">
+                <label class="js-label-edittask" for="edit-task">
                   <button class="js-btn-editcancel transition-transform active:scale-95">
                     <svg class="w-5 h-5 ml-2 fill-neutral-300 hover:fill-neutral-500 transition-all duration-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  >
                       <path  d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />

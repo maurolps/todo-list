@@ -1,5 +1,4 @@
-import { LoadProjects } from './storage.js';
-import { UpdateStorage } from './UpdateStorage.js';
+import { LoadProjects, UpdateStorage } from './storage.js';
 
 let taskIndex = 0;
 let markIndex = 0;
@@ -77,6 +76,7 @@ export const docClickHandler = () => {
     if (e.keyCode === 13 && newProjectName !== "") {
       newProjectInput.value = '';
       newProjectInput.blur();
+      
       newProjectMenu(newProjectName);
     }
   })
@@ -132,8 +132,11 @@ export function NewCard (title, color, priority, updateCard = false) {
   const btnPalette = newTodoCard.querySelector('.js-btn-palette');
   const btnTrash = newTodoCard.querySelector('.js-btn-trash');
   const inputNewTask = newTodoCard.querySelector('.js-input-newtask');
+  const labelNewTask = newTodoCard.querySelector('.js-label-newtask');
   const cardScale = newTodoCard.querySelector('.js-card-scale');
 
+  inputNewTask.id = 'new-task' + cardIndex.toString();
+  labelNewTask.id = 'new-task' + cardIndex.toString();
   let themeColor = themeColors[color] || themeColors.defaultColor;
   cardScale.dataset.index = cardIndex;
   cardIndex++;
@@ -169,6 +172,7 @@ export function NewCard (title, color, priority, updateCard = false) {
     const btnTrash = addTask.querySelector('.js-btn-deltask');
     const btnEditTask = addTask.querySelector('.js-btn-edittask');
     const inputEditTask = addTask.querySelector('.js-input-edittask');
+    const labelEditTask = addTask.querySelector('.js-label-edittask');
     const btnEditCancel = addTask.querySelector('.js-btn-editcancel');
     const editTaskContainer = addTask.querySelector('.js-edittask');
     const task = addTask.querySelector('.js-task');
@@ -181,6 +185,8 @@ export function NewCard (title, color, priority, updateCard = false) {
     taskLabel.textContent = taskText;
     taskInput.id = "task" + taskIndex.toString();
     taskLabel.htmlFor = "task" + taskIndex.toString();
+    inputEditTask.id = "edit-task" + taskIndex.toString();
+    labelEditTask.htmlFor = "edit-task" + taskIndex.toString();
     taskContainer.appendChild(addTask);
 
     if (update) updateStorage.saveTask(currentProject, cardScale.dataset.index, taskText);
@@ -244,11 +250,15 @@ export function NewCard (title, color, priority, updateCard = false) {
   const cardClickHandler = () => {
 
     cardPin.addEventListener('click', () => {
+      const todoIndex = cardScale.dataset.index;
+      updateStorage.savePin(currentProject, todoIndex, false);
       cardContainer.appendChild(cardScale);
       togglePin();
     })
 
     cardUnPin.addEventListener('click', () => {
+      const todoIndex = cardScale.dataset.index;
+      updateStorage.savePin(currentProject, todoIndex, true);
       cardContainer.insertBefore(cardScale, cardContainer.firstChild);
       togglePin();
     })
@@ -273,7 +283,7 @@ export function NewCard (title, color, priority, updateCard = false) {
       const todoIndex = cardScale.dataset.index;
       const saveColor = Object.keys(themeColors)[paletteIndex];
       updateStorage.saveTheme(currentProject, todoIndex, saveColor);
-
+      
       themeColor = Object.values(themeColors)[paletteIndex]
       paletteIndex++
       if (paletteIndex > 6) paletteIndex = 0;
