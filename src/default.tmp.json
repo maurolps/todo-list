@@ -2,7 +2,7 @@
  {
   "name": "project",
   "title": "Workout",
-  "complete": false,
+  "marked": false,
   "todo-list": [
     {
       "name": "todo",
@@ -10,23 +10,23 @@
       "dueDate": "15/12/2023",
       "priority": true,
       "color": "red",
-      "complete": true,
+      "marked": true,
       "tasks": [
         {
           "task": "Wake up morning",
-          "complete": true
+          "marked": true
         },
         {
           "task": "30 min of cardio",
-          "complete": true
+          "marked": true
         },
         {
           "task": "Eat healthy meat",
-          "complete": false
+          "marked": false
         },
         {
           "task": "Work out for 40 minutes",
-          "complete": false
+          "marked": false
         }
       ]
     },
@@ -36,19 +36,19 @@
       "dueDate": "15/12/2023",
       "priority": false,
       "color": "lime",
-      "complete": true,
+      "marked": true,
       "tasks": [
         {
           "task": "Exercise everyday",
-          "complete": false
+          "marked": false
         },
         {
           "task": "Plan your workouts",
-          "complete": true
+          "marked": true
         },
         {
           "task": "Stretch for 10 min after each workout",
-          "complete": false
+          "marked": false
         }
         
       ]
@@ -59,23 +59,23 @@
       "dueDate": "15/12/2023",
       "priority": false,
       "color": "cyan",
-      "complete": true,
+      "marked": true,
       "tasks": [
         {
           "task": "Track your progress",
-          "complete": false
+          "marked": false
         },
         {
           "task": "Make adjustments to your workouts as needed",
-          "complete": true
+          "marked": true
         },
         {
           "task": "Set new goals for yourself",
-          "complete": false
+          "marked": false
         },
         {
           "task": "Reward yourself for the hard work",
-          "complete": false
+          "marked": false
         }
         
       ]
@@ -85,7 +85,7 @@
  {
   "name": "project",
   "title": "Career",
-  "complete": false,
+  "marked": false,
   "todo-list": [
     {
       "name": "todo",
@@ -93,23 +93,23 @@
       "dueDate": "20/03/2024",
       "priority": false,
       "color": "purple",
-      "complete": false,
+      "marked": false,
       "tasks": [
         {
           "task": "Update resume",
-          "complete": true
+          "marked": true
         },
         {
           "task": "Create a LinkedIn profile",
-          "complete": true
+          "marked": true
         },
         {
           "task": "Research potential employers",
-          "complete": false
+          "marked": false
         },
         {
           "task": "Apply for at least 3 jobs per day",
-          "complete": false
+          "marked": false
         }
       ]
     },
@@ -119,19 +119,19 @@
       "dueDate": "15/01/2024",
       "priority": true,
       "color": "pink",
-      "complete": false,
+      "marked": false,
       "tasks": [
         {
           "task": "Identify skills to improve",
-          "complete": true
+          "marked": true
         },
         {
           "task": "Enroll in online courses",
-          "complete": false
+          "marked": false
         },
         {
           "task": "Set up a study schedule",
-          "complete": false
+          "marked": false
         }
       ]
     }
@@ -140,7 +140,7 @@
 {
   "name": "project",
   "title": "Home Improvement",
-  "complete": false,
+  "marked": false,
   "todo-list": [
     {
       "name": "todo",
@@ -148,19 +148,19 @@
       "dueDate": "28/02/2024",
       "priority": true,
       "color": "teal",
-      "complete": false,
+      "marked": false,
       "tasks": [
         {
           "task": "Create a budget",
-          "complete": false
+          "marked": false
         },
         {
           "task": "Hire a contractor",
-          "complete": false
+          "marked": false
         },
         {
           "task": "Monitor progress",
-          "complete": false
+          "marked": false
         }
       ]
     },
@@ -170,19 +170,19 @@
       "dueDate": "30/04/2024",
       "priority": false,
       "color": "lime",
-      "complete": false,
+      "marked": false,
       "tasks": [
         {
           "task": "Plan landscaping changes",
-          "complete": true
+          "marked": true
         },
         {
           "task": "Plant flowers",
-          "complete": true
+          "marked": true
         },
         {
           "task": "Create an outdoor seating area",
-          "complete": false
+          "marked": false
         }
       ]
     }

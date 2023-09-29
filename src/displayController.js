@@ -1,6 +1,7 @@
 import { LoadProjects, UpdateStorage } from './storage.js';
 
 let taskIndex = 0;
+let markIndex = 0;
 let paletteIndex = 3;
 let projectIndex = 0;
 let cardIndex = 0;
@@ -37,6 +38,8 @@ export function newProjectMenu (projectName) {
   inputNewPrj.addEventListener('change', (e) => {
     cardContainer.innerHTML = '';
     cardIndex = 0;
+    taskIndex = 0;
+    markIndex = 0;
     const projectList = LoadProjects();
     currentProject = inputNewPrj.dataset.index
     projectList.loadTodoList(currentProject);
@@ -133,6 +136,7 @@ export function NewCard (title, color, priority, updateCard = false) {
   let themeColor = themeColors[color] || themeColors.defaultColor;
   cardScale.dataset.index = cardIndex;
   cardIndex++;
+  markIndex = 0;
 
   if (updateCard) updateStorage.saveCard(currentProject, title);
 
@@ -156,7 +160,7 @@ export function NewCard (title, color, priority, updateCard = false) {
     }, 100);
   }
 
-  const newTask = (taskText, update = false) => {
+  const newTask = (taskText, update = false, marked = false) => {
     taskIndex++;
     const addTask = taskTemplate.content.cloneNode(true);
     const taskInput = addTask.querySelector(".js-task-input");
@@ -168,6 +172,10 @@ export function NewCard (title, color, priority, updateCard = false) {
     const editTaskContainer = addTask.querySelector('.js-edittask');
     const task = addTask.querySelector('.js-task');
 
+    task.dataset.index = markIndex;
+    markIndex++;
+
+    taskInput.checked = marked;
     taskInput.style.borderColor = themeColor;
     taskLabel.textContent = taskText;
     taskInput.id = "task" + taskIndex.toString();
@@ -189,6 +197,14 @@ export function NewCard (title, color, priority, updateCard = false) {
         }, 300);
       }
     }
+
+    taskInput.addEventListener('change', () => {
+      const todoIndex = cardScale.dataset.index;
+      const tasksIndex = task.dataset.index;
+      let mark = false;
+      if (taskInput.checked) mark = true;
+      updateStorage.saveMark(currentProject , todoIndex, tasksIndex, mark);
+    })
 
     inputEditTask.addEventListener('keydown', (e) => {
       const inputText = inputEditTask.value;

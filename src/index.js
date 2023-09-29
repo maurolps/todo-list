@@ -1,4 +1,4 @@
-import { LoadProjects, saveProject } from './storage.js';
+import { LoadProjects } from './storage.js';
 import { docClickHandler} from './displayController.js';
 
 const projectList = LoadProjects();

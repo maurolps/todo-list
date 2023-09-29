@@ -4,7 +4,7 @@ const defaultTodolist =
     {
      "name": "project",
      "title": "Workout",
-     "complete": false,
+     "marked": false,
      "todo-list": [
        {
          "name": "todo",
@@ -12,23 +12,23 @@ const defaultTodolist =
          "dueDate": "15/12/2023",
          "priority": true,
          "color": "red",
-         "complete": true,
+         "marked": true,
          "tasks": [
            {
              "task": "Wake up morning",
-             "complete": true
+             "marked": true
            },
            {
              "task": "30 min of cardio",
-             "complete": true
+             "marked": true
            },
            {
              "task": "Eat healthy meat",
-             "complete": false
+             "marked": false
            },
            {
              "task": "Work out for 40 minutes",
-             "complete": false
+             "marked": false
            }
          ]
        },
@@ -38,19 +38,19 @@ const defaultTodolist =
          "dueDate": "15/12/2023",
          "priority": false,
          "color": "lime",
-         "complete": true,
+         "marked": true,
          "tasks": [
            {
              "task": "Exercise everyday",
-             "complete": false
+             "marked": false
            },
            {
              "task": "Plan your workouts",
-             "complete": true
+             "marked": true
            },
            {
              "task": "Stretch for 10 min after each workout",
-             "complete": false
+             "marked": false
            }
            
          ]
@@ -61,23 +61,23 @@ const defaultTodolist =
          "dueDate": "15/12/2023",
          "priority": false,
          "color": "cyan",
-         "complete": true,
+         "marked": true,
          "tasks": [
            {
              "task": "Track your progress",
-             "complete": false
+             "marked": false
            },
            {
              "task": "Make adjustments to your workouts as needed",
-             "complete": true
+             "marked": true
            },
            {
              "task": "Set new goals for yourself",
-             "complete": false
+             "marked": false
            },
            {
              "task": "Reward yourself for the hard work",
-             "complete": false
+             "marked": false
            }
            
          ]
@@ -87,7 +87,7 @@ const defaultTodolist =
     {
      "name": "project",
      "title": "Career",
-     "complete": false,
+     "marked": false,
      "todo-list": [
        {
          "name": "todo",
@@ -95,23 +95,23 @@ const defaultTodolist =
          "dueDate": "20/03/2024",
          "priority": false,
          "color": "purple",
-         "complete": false,
+         "marked": false,
          "tasks": [
            {
              "task": "Update resume",
-             "complete": true
+             "marked": true
            },
            {
              "task": "Create a LinkedIn profile",
-             "complete": true
+             "marked": true
            },
            {
              "task": "Research potential employers",
-             "complete": false
+             "marked": false
            },
            {
              "task": "Apply for at least 3 jobs per day",
-             "complete": false
+             "marked": false
            }
          ]
        },
@@ -121,19 +121,19 @@ const defaultTodolist =
          "dueDate": "15/01/2024",
          "priority": true,
          "color": "pink",
-         "complete": false,
+         "marked": false,
          "tasks": [
            {
              "task": "Identify skills to improve",
-             "complete": true
+             "marked": true
            },
            {
              "task": "Enroll in online courses",
-             "complete": false
+             "marked": false
            },
            {
              "task": "Set up a study schedule",
-             "complete": false
+             "marked": false
            }
          ]
        }
@@ -142,7 +142,7 @@ const defaultTodolist =
    {
      "name": "project",
      "title": "Home Improvement",
-     "complete": false,
+     "marked": false,
      "todo-list": [
        {
          "name": "todo",
@@ -150,19 +150,19 @@ const defaultTodolist =
          "dueDate": "28/02/2024",
          "priority": true,
          "color": "teal",
-         "complete": false,
+         "marked": false,
          "tasks": [
            {
              "task": "Create a budget",
-             "complete": false
+             "marked": false
            },
            {
              "task": "Hire a contractor",
-             "complete": false
+             "marked": false
            },
            {
              "task": "Monitor progress",
-             "complete": false
+             "marked": false
            }
          ]
        },
@@ -172,19 +172,19 @@ const defaultTodolist =
          "dueDate": "30/04/2024",
          "priority": false,
          "color": "lime",
-         "complete": false,
+         "marked": false,
          "tasks": [
            {
              "task": "Plan landscaping changes",
-             "complete": true
+             "marked": true
            },
            {
              "task": "Plant flowers",
-             "complete": true
+             "marked": true
            },
            {
              "task": "Create an outdoor seating area",
-             "complete": false
+             "marked": false
            }
          ]
        }
@@ -222,7 +222,8 @@ export const LoadProjects = () => {
     for (let i = 0; i < todo.length; i++) {
       const addCard = NewCard(todo[i].title, todo[i].color, todo[i].priority);
       for (let j = 0; j < todo[i].tasks.length; j++) {
-        addCard.newTask(todo[i].tasks[j].task);
+        const tasks = todo[i].tasks[j];
+        addCard.newTask(tasks.task, false, tasks.marked);
       }
     }
   }
@@ -250,7 +251,7 @@ export const UpdateStorage = () => {
   const todoList = loadStorage();
   const saveTask = (projectIndex, cardIndex, task) => {
     // console.log(`addTask (${projectIndex}, ${cardIndex}, ${task})`);
-    const newTask = { task, "complete": false };
+    const newTask = { task, "marked": false };
     todoList[projectIndex]["todo-list"][cardIndex].tasks.push(newTask);
     saveProject(todoList);
   }
@@ -266,5 +267,10 @@ export const UpdateStorage = () => {
     saveProject(todoList);
   }
 
-  return {saveTask, saveCard}
+  const saveMark = (projectIndex, cardIndex, taskId, marked) => {
+    todoList[projectIndex]["todo-list"][cardIndex].tasks[taskId].marked = marked;
+    saveProject(todoList);
+  }
+
+  return {saveTask, saveCard, saveMark}
 }
