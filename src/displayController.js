@@ -95,7 +95,7 @@ export const docClickHandler = () => {
   inputNewCard.addEventListener('keydown', (e) => {
     const newCardTitle = inputNewCard.value;
     if (e.keyCode === 13 && newCardTitle !== "") {
-      NewCard(newCardTitle, "defaultColor", false);
+      NewCard(newCardTitle, "defaultColor", false, true);
       inputNewCard.value = "";
     }
   })
@@ -104,7 +104,7 @@ export const docClickHandler = () => {
     const newCardTitle = inputNewCard.value;
 
     if (newCardTitle !== "") {
-      NewCard(newCardTitle, "defaultColor", false);
+      NewCard(newCardTitle, "defaultColor", false, true);
       inputNewCard.value = "";
     }
   })
@@ -112,7 +112,7 @@ export const docClickHandler = () => {
 
 }
 
-export function NewCard (title, color, priority) {
+export function NewCard (title, color, priority, updateCard = false) {
   const updateStorage = UpdateStorage();
   const cardContainer = document.getElementById('js-card-container');
   const cardTemplate = document.getElementById('js-card-template');
@@ -134,6 +134,7 @@ export function NewCard (title, color, priority) {
   cardScale.dataset.index = cardIndex;
   cardIndex++;
 
+  if (updateCard) updateStorage.saveCard(currentProject, title);
 
   cardTitle.style.backgroundColor = themeColor;
   cardTitle.textContent = title;
@@ -173,7 +174,7 @@ export function NewCard (title, color, priority) {
     taskLabel.htmlFor = "task" + taskIndex.toString();
     taskContainer.appendChild(addTask);
 
-    if (update) updateStorage.addTask(currentProject, cardScale.dataset.index, taskText);
+    if (update) updateStorage.saveTask(currentProject, cardScale.dataset.index, taskText);
 
     const toggleEdit = (editing = true) => {
       editTaskContainer.classList.toggle('scale-0');

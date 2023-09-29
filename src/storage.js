@@ -240,19 +240,31 @@ export const saveProject = (todoList, reset = false) => {
   if (reset) {
     localStorage.setItem("todolist", defaultTodolist);
     return;
-  }
+  } if (todoList !== null) {
   localStorage.setItem("todolist", JSON.stringify(todoList));
-  
+  }
+
 }
 
 export const UpdateStorage = () => {
   const todoList = loadStorage();
-  const addTask = (projectIndex, cardIndex, task) => {
+  const saveTask = (projectIndex, cardIndex, task) => {
     // console.log(`addTask (${projectIndex}, ${cardIndex}, ${task})`);
     const newTask = { task, "complete": false };
     todoList[projectIndex]["todo-list"][cardIndex].tasks.push(newTask);
     saveProject(todoList);
   }
 
-  return {addTask}
+  const saveCard = (projectIndex, title) => {
+    const newCard = {
+      "name": "todo", title,
+      "dueDate": "20/05/2025",
+      "priority": false,
+      "tasks": []
+    }
+    todoList[projectIndex]["todo-list"].push(newCard);
+    saveProject(todoList);
+  }
+
+  return {saveTask, saveCard}
 }
