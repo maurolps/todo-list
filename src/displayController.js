@@ -172,7 +172,7 @@ export function NewCard (title, color, priority, updateCard = false) {
     const addTask = taskTemplate.content.cloneNode(true);
     const taskInput = addTask.querySelector(".js-task-input");
     const taskLabel = addTask.querySelector('.js-task-label');
-    const btnTrash = addTask.querySelector('.js-btn-deltask');
+    const btnTaskTrash = addTask.querySelector('.js-btn-deltask');
     const btnEditTask = addTask.querySelector('.js-btn-edittask');
     const inputEditTask = addTask.querySelector('.js-input-edittask');
     const labelEditTask = addTask.querySelector('.js-label-edittask');
@@ -196,7 +196,7 @@ export function NewCard (title, color, priority, updateCard = false) {
 
     const toggleEdit = (editing = true) => {
       editTaskContainer.classList.toggle('scale-0');
-      btnTrash.classList.toggle('scale-0');
+      btnTaskTrash.classList.toggle('scale-0');
       btnEditTask.classList.toggle('scale-0');
       if (editing) {
         taskLabel.classList.toggle('scale-0');
@@ -232,8 +232,13 @@ export function NewCard (title, color, priority, updateCard = false) {
       toggleEdit(false);
     })
 
-    btnTrash.addEventListener('click', () => {
-      task.remove();
+    btnTaskTrash.addEventListener('click', () => {
+      taskContainer.innerHTML = '';
+      const tasks = updateStorage.removeTask(currentProject,cardScale.dataset.index, task.dataset.index);
+      for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+        newTask(task.task, false, task.marked);
+      }
     })
 
     btnEditTask.addEventListener('click', () => {
@@ -300,7 +305,6 @@ export function NewCard (title, color, priority, updateCard = false) {
 
     btnCardTrash.addEventListener('click', () => {
       updateStorage.removeCard(currentProject, cardScale.dataset.index);
-      // cardScale.remove();
       cardContainer.innerHTML = '';
       cardIndex = 0;
       taskIndex = 0;
