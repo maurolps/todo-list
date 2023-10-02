@@ -299,8 +299,16 @@ export function NewCard (title, color, priority, updateCard = false) {
     });
 
     btnCardTrash.addEventListener('click', () => {
-
-      cardScale.remove();
+      updateStorage.removeCard(currentProject, cardScale.dataset.index);
+      // cardScale.remove();
+      cardContainer.innerHTML = '';
+      cardIndex = 0;
+      taskIndex = 0;
+      markIndex = 0;
+      setTimeout(() => {
+        const projectList = LoadProjects();
+        projectList.loadTodoList(currentProject);   
+      }, 50);
     })
 
   }

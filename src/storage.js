@@ -307,8 +307,15 @@ export const UpdateStorage = () => {
     }, 50);
   }
 
+  const removeCard = (projectIndex, cardIndex) => {
+    console.log('remove: ', todoList[projectIndex]["todo-list"][cardIndex].title);
+    console.log(todoList[projectIndex]["todo-list"]);
+    todoList[projectIndex]["todo-list"].splice(cardIndex, 1);
+    saveProject(todoList);
+    console.log(todoList[projectIndex]["todo-list"]);
+
+  }
 
 
-
-  return {saveTask, saveCard, saveMark, saveEdit, saveTheme, savePin, addProject, removeProject}
+  return {saveTask, saveCard, saveMark, saveEdit, saveTheme, savePin, addProject, removeProject, removeCard}
 }
