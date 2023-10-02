@@ -33,7 +33,9 @@
 
         <!-- Projects menu Container  -->
         <div class="js-projects-container text-base space uppercase font-bold text-neutral-300 tracking-widest p-5">
-          <template id="new-project-template">
+          <!-- new-project-template loads here  -->
+        </div>
+        <template id="new-project-template">
             <div class="js-new-proj-container relative min-w-[200px]">
               <input type="radio" name="project-menu" id="0" class="js-input-newprj peer hidden"  />
               <label for="0" class="js-label-newprj block cursor-pointer select-none rounded-md p-2 text-center hover:text-neutral-500 peer-checked:bg-neutral-700 peer-checked:font-bold peer-checked:text-white">career</label>
@@ -45,8 +47,7 @@
                 </button>
               </div>
             </div> 
-          </template>
-        </div>
+        </template>
         <!-- Add project button  -->
         <div class="flex items-center justify-center flex-col relative my-4">
           <button class="js-btn-addproject transition-transform active:scale-95 absolute z-50">

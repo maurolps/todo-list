@@ -297,6 +297,18 @@ export const UpdateStorage = () => {
 
   }
 
+  const removeProject = (projectIndex) => {
+    todoList.splice(projectIndex, 1);
+    saveProject(todoList);
+    setTimeout(() => {
+      for (let i = 0; i < todoList.length; i++) {
+        newProjectMenu(todoList[i].title, true);
+      }
+    }, 50);
+  }
 
-  return {saveTask, saveCard, saveMark, saveEdit, saveTheme, savePin, addProject}
+
+
+
+  return {saveTask, saveCard, saveMark, saveEdit, saveTheme, savePin, addProject, removeProject}
 }

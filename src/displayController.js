@@ -17,14 +17,14 @@ const themeColors = {
   defaultColor: "#fdba74"
 }
 
-export function newProjectMenu (projectName) {
+export function newProjectMenu (projectName, reload = false) {
+  const updateStorage = UpdateStorage();
   const cardContainer = document.getElementById('js-card-container');
   const projectsContainer = document.querySelector('.js-projects-container');
   const newProject = document.getElementById('new-project-template').content.cloneNode(true);
   const labelNewPrj = newProject.querySelector('.js-label-newprj');
   const inputNewPrj = newProject.querySelector('.js-input-newprj');
   const btnProjectTrash = newProject.querySelector('.js-btn-prj-trash');
-  const newProjectContainer = newProject.querySelector('.js-new-proj-container');
 
   inputNewPrj.id = projectIndex.toString();
   labelNewPrj.textContent = projectName;
@@ -32,7 +32,7 @@ export function newProjectMenu (projectName) {
 
   inputNewPrj.dataset.index = projectIndex;
   projectIndex++;
-  if (projectIndex === 1) inputNewPrj.setAttribute('checked', true);
+  if (projectIndex === 1 && !reload) inputNewPrj.setAttribute('checked', true);
   projectsContainer.appendChild(newProject);
 
   inputNewPrj.addEventListener('change', (e) => {
@@ -48,8 +48,10 @@ export function newProjectMenu (projectName) {
   btnProjectTrash.addEventListener('click', () => {
     const confirmTrash = confirm(`Remove project: ${projectName} ?`);
     if (confirmTrash) { 
-      newProjectContainer.innerHTML = '';
-      cardContainer.innerHTML = '';
+     projectIndex = 0;
+     projectsContainer.innerHTML = '';
+     cardContainer.innerHTML = '';
+     updateStorage.removeProject(currentProject);
     }
   })
 
@@ -131,7 +133,7 @@ export function NewCard (title, color, priority, updateCard = false) {
 
   const btnNewTask = newTodoCard.querySelector('.js-btn-newtask');
   const btnPalette = newTodoCard.querySelector('.js-btn-palette');
-  const btnTrash = newTodoCard.querySelector('.js-btn-trash');
+  const btnCardTrash = newTodoCard.querySelector('.js-btn-trash');
   const inputNewTask = newTodoCard.querySelector('.js-input-newtask');
   const labelNewTask = newTodoCard.querySelector('.js-label-newtask');
   const cardScale = newTodoCard.querySelector('.js-card-scale');
@@ -296,7 +298,8 @@ export function NewCard (title, color, priority, updateCard = false) {
 
     });
 
-    btnTrash.addEventListener('click', () => {
+    btnCardTrash.addEventListener('click', () => {
+
       cardScale.remove();
     })
 
